@@ -1,5 +1,5 @@
 <?PHP
-
+$path = '';
 require("includes/header.php");
 
 ?>

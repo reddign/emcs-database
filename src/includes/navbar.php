@@ -2,18 +2,19 @@
 <nav class="w3-sidebar w3-blue w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
   <div class="w3-container">
-   <img width="200px" src="images/deptLogoBottom.jpg">
+   <img width="200px" src="<?php echo $path; ?>images/deptLogoBottom.jpg">
     <h3 class="w3-padding-34"><b>EMCS Career DB</b></h3>
   </div>
   <div class="w3-bar-block">
-    <a href="index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
-    <a href="students.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Students</a> 
-    <a href="companies.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Companies</a> 
-    <a href="contacts.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Contacts</a> 
-    <a href="openings.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Job Openings</a> 
-     <a href="survey.php"="w3_close()" class="w3-bar-item w3-button w3-hover-white">Student Interest Survey</a> 
-    <a href="import.php"="w3_close()" class="w3-bar-item w3-button w3-hover-white">Data Import</a> 
-    <a href="about.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">About</a>
+    <a href="<?php echo $path; ?>index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
+    <a href="<?php echo $path; ?>students.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Students</a> 
+    <a href="<?php echo $path; ?>companies.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Companies</a> 
+    <a href="<?php echo $path; ?>contacts.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Contacts</a> 
+    <a href="<?php echo $path; ?>openings.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Job Openings</a> 
+    <a href="<?php echo $path; ?>meetings.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Meetings</a> 
+    <a href="<?php echo $path; ?>survey.php"="w3_close()" class="w3-bar-item w3-button w3-hover-white">Student Interest Survey</a> 
+    <a href="<?php echo $path; ?>import.php"="w3_close()" class="w3-bar-item w3-button w3-hover-white">Data Import</a> 
+    <a href="<?php echo $path; ?>about.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">About</a>
     
   </div>
 

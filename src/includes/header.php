@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-<link rel ="stylesheet" href="css/style.css">
+<link rel ="stylesheet" href="<?php echo $path; ?>css/style.css">
 </head>
 <?PHP
 include "navbar.php";

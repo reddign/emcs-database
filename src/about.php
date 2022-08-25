@@ -24,7 +24,7 @@ Corr, Seamus<BR/>
 Fox, Alex<BR/>
 George, Noah <BR/>
 Griffin, Nathan <BR/>
-Hanley, Aidan <BR/>
+Aidan Hanley <BR/>
 Hildebrand, Blake<BR/>
 Johnson, Adam <BR/>
 Kimmel, Gabriel <BR/>

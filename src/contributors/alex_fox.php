@@ -11,6 +11,7 @@ require("../includes/header.php");
   </div>
 
   Alex is a Junior Computer Science major at Elizabethtown college.
+  He is currently working with team Omega to create a log in page for the site.
 
 <?PHP
 require("../includes/footer.php");

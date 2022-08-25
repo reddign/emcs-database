@@ -11,6 +11,6 @@ require("../includes/header.php");
   </div>
 
   August is a junior data science major at Etown.
-  He is currently working with team Delta to provide access to student survey information.
+  
 <?PHP
 require("../includes/footer.php");

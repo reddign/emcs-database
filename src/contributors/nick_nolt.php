@@ -11,6 +11,7 @@ require("../includes/header.php");
   </div>
 
     Nick is a ejnajdbsjidbidbaudbiwabi iubdaiubd iubdaiubd aiubdiabd absudba idubdiu asb diubasd oooo o o oo  oooo o o o  o o monkey o oo oo oo o o 
+    <img src="https://static.wikia.nocookie.net/sonic/images/0/04/SA2Gorilla.png/revision/latest?cb=20170514074637" alt="monker" width=30>
   
 
 <?PHP

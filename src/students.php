@@ -1,6 +1,7 @@
 <?PHP
 $path = '';
 require("../config.php");
+require("functions/student_form_functions.php");
 require("includes/header.php");
 
 ?>

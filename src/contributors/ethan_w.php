@@ -10,6 +10,8 @@ require("../includes/header.php");
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
+  <strong>bingus <img src="https://static.wikia.nocookie.net/sonic/images/0/04/SA2Gorilla.png/revision/latest?cb=20170514074637" alt="monker" width=30></strong>
+
   EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 
 <?PHP

@@ -17,28 +17,28 @@ require("includes/header.php");
   <BR/>
   Click on the names to read about each team member and their contribution.
   <BR/>
-Baldwin, Derek<BR/> 
-Bednar, August <BR/>
-Burleson, Simon<BR/>
-Corr, Seamus<BR/>
-Fox, Alex<BR/>
-George, Noah <BR/>
-Griffin, Nathan <BR/>
+Derek Baldwin<BR/> 
+August Bednar<BR/>
+Simon Burleson<BR/>
+Seamus Corr<BR/>
+Alex Fox<BR/>
+Noah George <BR/>
+Nathan Griffin<BR/>
 Aidan Hanley <BR/>
-Hildebrand, Blake<BR/>
-Johnson, Adam <BR/>
-Kimmel, Gabriel <BR/>
-Knappenberger, Kelsey<BR/>
-Kutteh, Joseph <BR/>
-Mansfield, Nathaniel<BR/>
-Nolt, Nicholas <BR/>
-Omundsen, Adam <BR/>
-Sanchez Govea, Freddie<BR/> 
-Sutton, Matthew <BR/>
-Vanek, Olivyah <BR/>
-Voltz, Christopher<BR/>
-Walmer, Aiden <BR/>
-Weitkamp, Ethan <BR/>
+Blake Hildebrand<BR/>
+Adam Johnson<BR/>
+Gabriel Kimmel<BR/>
+Kelsey Knappenberger<BR/>
+Joseph Kutteh<BR/>
+Nathaniel Mansfield<BR/>
+Nicholas Nolt<BR/>
+Adam Omundsen<BR/>
+Freddie Sanchez Govea<BR/> 
+Matthew Sutton<BR/>
+Olivyah Vanek<BR/>
+Christopher Voltz<BR/>
+Aiden Walmer <BR/>
+Ethan Weitkamp  <BR/>
 <BR/>
 Professor Nancy Reddig<BR/>
 

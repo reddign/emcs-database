@@ -10,7 +10,7 @@ require("../includes/header.php");
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
-    Nick is a senior information systems major at Etown.
+    Nick is a ejnajdbsjidbidbaudbiwabi iubdaiubd iubdaiubd aiubdiabd absudba idubdiu asb diubasd oooo o o oo  oooo o o o  o o monkey o oo oo oo o o 
   
 
 <?PHP

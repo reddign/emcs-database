@@ -13,6 +13,8 @@ require("../includes/header.php");
 
   Nathan is a senior engineering major at Etown.
   He is currently working with team Xi to implement mobile-friendly features for the site.
+
+  :)
 ========
   
 

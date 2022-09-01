@@ -12,7 +12,8 @@ require("includes/header.php");
   <!-- IMPORT FILE -->
   <?php
 
-  echo "need to grab file from user \n";
+  echo "need to grab file from user ";
+  echo "<br>";
   ?>
 
   <?php

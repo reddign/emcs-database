@@ -3,7 +3,7 @@ $path = '';
 require("../config.php");
 require("functions/basic_html_functions.php");
 require("functions/database_functions.php");
-require("functions/company_form_functions.php");
+require("functions/companies_form_functions.php");
 $page = isset($_GET["page"])?$_GET["page"]:"search";
 require("includes/header.php");
 

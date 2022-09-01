@@ -20,7 +20,7 @@ function display_company_form($student=""){
         <input name="sid" type="hidden">
         <input name="page" type="hidden" value="save">
         alumni<input name="alumni" type="checkbox" value="1" $checked><BR/>
-        <input type="submit" value="Add Student">
+        <input type="submit" value="Add Company">
     </form>';
 
 }
@@ -28,7 +28,7 @@ function display_company_page_navigation($currentPage){
     $navHTML  = '<h4><div style="margin-top:5px;margin-bottom:45px;">';
     $navHTML .= '<a href="students.php?page=search" class="selected">Search</a>';
     $navHTML .= ' | ';
-    $navHTML .= '<a href="students.php?page=add">Add Student</a>';
+    $navHTML .= '<a href="students.php?page=add">Add Company</a>';
     $navHTML .= ' <div> </h4>';
     
     echo $navHTML;

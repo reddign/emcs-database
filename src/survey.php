@@ -15,8 +15,11 @@ require("includes/header.php");
   ?>
   <p>
     <label for="interest_txt">What are your interests:</label>
+  </p> 
+  <p>
     <textarea rows = "3"></textarea>
-  </p>
+</p>
+ 
 
 
 <?PHP

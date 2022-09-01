@@ -13,7 +13,10 @@ require("includes/header.php");
   <?php
   echo "This page will allow student's to complete an interest survey.";
   ?>
-
+  <p>
+    <label for="interest_txt">What are your interests:</label>
+    <textarea rows = "3"><input type="text" name="interests" id="interest_txt"></textarea>
+  </p>
 
 
 <?PHP

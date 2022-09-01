@@ -1,29 +1,33 @@
 <?PHP
-function display_add_meeting_form($meeting=""){
+function display_meeting_form($meeting=""){
 
     if($meeting==""){
         $formHTML = "<h2>Add Meeting</h2>";
+        $meeting = [];
         $meeting["name"] = "";
         $meeting["date"] = "";
         $meeting["start_time"] = "";
         $meeting["location"] = "";
         $meeting["notes"] = "";
-        $checked = "";
+        #$checked = "";
     }else{
-        $formHTML = "<h2>Edit Student</h2>";
-        $checked = ($student["alumni"]==1)? " checked " : "";
+        $formHTML = "<h2>Edit Meeting</h2>";
+        #$checked = ($student["alumni"]==1)? " checked " : "";
     }
-    echo '<form method=post action=students.php>
-        First Name:<input name="first_name" type="text" value={$student["first_name"]}><BR/>
-        Last Name:<input name="last_name" type="text" value={$student["last_name"]}><BR/>
-        Grad Year:<input name="grad_year" type="text" value={$student["grad_year"]}><BR/>
-        <input name="sid" type="hidden">
+    echo '<form method=post action=meetings.php>
+        Meeting Name: <input style="margin-bottom:16px;" name="meeting_name" type="text" value='.$meeting["name"].'><BR/>
+        Date: <input style="margin-bottom:16px;" name="date" type="text" value='.$meeting["date"].'><BR/>
+        Start Time: <input style="margin-bottom:16px;" name="start_time" type="text" value='.$meeting["start_time"].'><BR/>
+        Location: <input style="margin-bottom:16px;" name="location" type="text" value='.$meeting["location"].'><BR/>
+        Meeting Notes:<BR/>
+        <textarea style="width:60%;" name="location" type="text" value='.$meeting["notes"].'></textarea><BR/>
+        <input name="mid" type="hidden">
         <input name="page" type="hidden" value="save">
-        alumni<input name="alumni" type="checkbox" value="1" $checked><BR/>
-        <input type="submit" value="Add Student">
+        <input type="submit" value="Add Meeting">
     </form>';
 
 }
+
 function display_meeting_page_navigation($currentPage){
     $navHTML  = '<h4><div style="margin-top:5px;margin-bottom:45px;">';
     $navHTML .= '<a href="meetings.php?page=search" class="selected">Search</a>';

@@ -42,7 +42,7 @@ public class ExcelImport {
     }
 
     private static int gradYeartoInt(String s) {
-        try { return Integer.parseInt(s) }
+        try { return Integer.parseInt(s); }
         catch (NumberFormatException e) {
             return -1;
         }

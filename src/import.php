@@ -11,9 +11,10 @@ require("includes/header.php");
   </div>
   <!-- IMPORT FILE -->
   <?php
-  echo "need to grab file from user";
+
+  echo "need to grab file from user \n";
   ?>
-  
+
   <?php
   echo "This page will allow importing of data from Microsoft Lists.";
   ?>

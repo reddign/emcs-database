@@ -14,13 +14,13 @@ function display_company_form($student=""){
         $checked = ($student["alumni"]==1)? " checked " : "";
     }
     echo '<form method=post action=students.php>
-        First Name:<input name="first_name" type="text" value={$student["first_name"]}><BR/>
-        Last Name:<input name="last_name" type="text" value={$student["last_name"]}><BR/>
-        Grad Year:<input name="grad_year" type="text" value={$student["grad_year"]}><BR/>
-        <input name="sid" type="hidden">
+        First Name:<input name="first_name" type="text" value="'.$student["first_name"].'"><BR/>
+        Last Name:<input name="last_name" type="text" value="'.$student["last_name"].'"><BR/>
+        Grad Year:<input name="grad_year" type="text" value="'.$student["grad_year"].'"><BR/>
+        <input name="sid" type="hidden"  value="'.$student["sid"].'">
         <input name="page" type="hidden" value="save">
         alumni<input name="alumni" type="checkbox" value="1" $checked><BR/>
-        <input type="submit" value="Add Company">
+        <input type="submit" value="Add Student">
     </form>';
 
 }

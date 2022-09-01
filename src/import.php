@@ -9,6 +9,11 @@ require("includes/header.php");
     <h1 class="w3-xxxlarge w3-text-red"><b>Importer.</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
+  <!-- IMPORT FILE -->
+  <?php
+
+  echo "need to grab file from user \n";
+  ?>
 
   <?php
   echo "This page will allow importing of data from Microsoft Lists.";

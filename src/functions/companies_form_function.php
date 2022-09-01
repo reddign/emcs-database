@@ -26,9 +26,9 @@ function display_company_form($student=""){
 }
 function display_company_page_navigation($currentPage){
     $navHTML  = '<h4><div style="margin-top:5px;margin-bottom:45px;">';
-    $navHTML .= '<a href="students.php?page=search" class="selected">Search</a>';
+    $navHTML .= '<a href="companies.php?page=search" class="selected">Search</a>';
     $navHTML .= ' | ';
-    $navHTML .= '<a href="students.php?page=add">Add Company</a>';
+    $navHTML .= '<a href="companies.php?page=add">Add Company</a>';
     $navHTML .= ' <div> </h4>';
     
     echo $navHTML;
@@ -46,7 +46,7 @@ function display_company_list($data=null){
         echo "";
     }
     foreach ($data as $row) {
-            echo "<a href='students.php?page=student&sid=".$row['studentID']."'>";
+            echo "<a href='companies.php?page=student&sid=".$row['studentID']."'>";
             echo $row['firstName']." ".$row['lastName']."<br />\n";
             echo "</a>";
     }

@@ -17,9 +17,9 @@ require("includes/header.php");
   switch($page){
     case "search":
       $string = isset($_GET["search"])?$_GET["search"]:"";
-      $students = get_company_by_name($string);
+      $companys = get_company_by_name($string);
       display_search_form();
-      display_company_list($students);
+      display_company_list($companys);
       break;
     case "add":
       display_company_form();

@@ -84,7 +84,7 @@ function get_all_company_from_db(){
     $data = $pdo->query("SELECT * FROM student order by lastName,firstName")->fetchAll();
     return $data;
 }
-function addStudent($arrayData){
+function addCompany($arrayData){
     $last_name = $arrayData["last_name"];
     $first_name = $arrayData["first_name"];
     $gradYear = $arrayData["grad_year"];
@@ -96,7 +96,7 @@ function addStudent($arrayData){
     header("location:students.php?page=student&sid=".$sid."&message=Student Added");
   
 }
-function editStudent($arrayData){
+function editCompany($arrayData){
     $last_name = $arrayData["last_name"];
     $first_name = $arrayData["first_name"];
     $gradYear = $arrayData["grad_year"];

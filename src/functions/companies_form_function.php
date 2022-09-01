@@ -71,7 +71,7 @@ function get_company($sid){
 } 
 function get_company_by_name($word){
     if($word==""){
-        return get_all_students_from_db();
+        return get_all_company_from_db();
     }
     $pdo = connect_to_db();
     $stmt = $pdo->prepare("SELECT * FROM student WHERE first_name like :name or last_name like :name");

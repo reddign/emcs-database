@@ -4,10 +4,10 @@
     if($contact==""){
         $formHTML = "<h2>Add Contact</h2>";
         $contact["sid"] = "";
-        $industry["last_name"] = "";
-        $industry["first_name"] = "";
-        $industry["grad_year"] = "";
-        $industry["alumni"] = "";
+        $contact["last_name"] = "";
+        $contact["first_name"] = "";
+        $contact["grad_year"] = "";
+        $contact["alumni"] = "";
         $checked = "";
     }else{
         $formHTML = "<h2>Edit Industry</h2>";

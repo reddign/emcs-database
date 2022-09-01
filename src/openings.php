@@ -10,11 +10,8 @@ require("includes/header.php");
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
-  <?php
-  echo "A search of job openings will appear below.";
-  ?>
-
-
-
 <?PHP
+
+
+  display_openings_navigation("Openings");
 require("includes/footer.php");

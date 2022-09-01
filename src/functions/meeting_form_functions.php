@@ -1,13 +1,13 @@
 <?PHP
 function display_add_meeting_form($meeting=""){
 
-    if($student==""){
-        $formHTML = "<h2>Add Student</h2>";
-        $student["sid"] = "";
-        $student["last_name"] = "";
-        $student["first_name"] = "";
-        $student["grad_year"] = "";
-        $student["alumni"] = "";
+    if($meeting==""){
+        $formHTML = "<h2>Add Meeting</h2>";
+        $meeting["name"] = "";
+        $meeting["date"] = "";
+        $meeting["start_time"] = "";
+        $meeting["location"] = "";
+        $meeting["notes"] = "";
         $checked = "";
     }else{
         $formHTML = "<h2>Edit Student</h2>";
@@ -34,8 +34,8 @@ function display_meeting_page_navigation($currentPage){
     echo $navHTML;
 }
 function display_search_meeting_form(){
-    echo '<h2>Search for a meeting by date.</h2><form method=get action=_self>
-        Enter Meeting Date: <input name="word" type="text">
+    echo '<h2>Search for a meeting by name.</h2><form method=get action=_self>
+        Enter Meeting Name: <input name="word" type="text">
         <input type="submit" value="Search">
     </form><br/><br/>';
 
@@ -46,8 +46,8 @@ function display_meeting_list($data=null){
         echo "";
     }
     foreach ($data as $row) {
-            echo "<a href='students.php?page=student&sid=".$row['studentID']."'>";
-            echo $row['firstName']." ".$row['lastName']."<br />\n";
+            echo "<a href='meetings.php?page=meeting&sid=".$row['meetingID']."'>";
+            echo $row['meetingName']." ".$row['date']."<br />\n";
             echo "</a>";
     }
 }
@@ -67,18 +67,51 @@ function get_meeting($meetingid){
     $data = $stmt->fetch();
     return $data;
 } 
-function get_student_by_name($word){
+function get_meeting_by_name($word){
     if($word==""){
-        return get_all_students_from_db();
+        return get_all_meetings_from_db();
     }
     $pdo = connect_to_db();
-    $stmt = $pdo->prepare("SELECT * FROM student WHERE first_name like :name or last_name like :name");
+    $stmt = $pdo->prepare("SELECT * FROM meeting WHERE meetingName like :name or last_name like :name");
     $stmt->execute([':name' => $word]); 
     $data = $stmt->fetch();
     return $data;
 }    
 function get_all_meetings_from_db(){
     $pdo = connect_to_db();
-    $data = $pdo->query("SELECT * FROM student order by lastName,firstName")->fetchAll();
+    $data = $pdo->query("SELECT * FROM meeting order by date;")->fetchAll();
     return $data;
+}
+function process_meeting_form_data($arrayData){
+    print_r($arrayData);
+    $sid = $arrayData["sid"];
+    if($sid==""){
+        addStudent($arrayData);
+    }else{
+        editStudent($arrayData);
+    }
+    
+}
+function addMeeting($arrayData){
+    $last_name = $arrayData["last_name"];
+    $first_name = $arrayData["first_name"];
+    $gradYear = $arrayData["grad_year"];
+    $alumni = isset($arrayData["alumni"])?1:0;
+    $pdo = connect_to_db();
+    $stmt = $pdo->prepare("insert into student (firstName,lastName,gradYear,alumni) VALUES (:first,:last,:gradYr,:alum)");
+    $stmt->execute([':first' => $first_name, ":last"=> $last_name, ":gradYr"=>$gradYear,":alum"=>$alumni]);
+    $sid = $pdo->lastInsertId();
+    header("location:students.php?page=student&sid=".$sid."&message=Student Added");
+  
+}
+function editMeeting($arrayData){
+    $last_name = $arrayData["last_name"];
+    $first_name = $arrayData["first_name"];
+    $gradYear = $arrayData["grad_year"];
+    $alumni = $arrayData["alumni"];
+    $sid = $arrayData["studentID"];
+    $pdo = connect_to_db();
+    $stmt = $pdo->prepare("update student  set firstName = :first, lastName = :last, gradYear = :gradYr,alumni=:alum where studentID=:sid");
+    $stmt->execute([':first' => $first_name, ":last"=> $last_name, ":gradYr"=>$gradYear,":alum"=>$alumni,":sid"=>$sid]);
+    header("location:students.php?page=student&sid=".$sid."&message=Student Updated");
 }

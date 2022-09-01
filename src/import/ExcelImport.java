@@ -36,7 +36,20 @@ public class ExcelImport {
     }
 
     private static void importStudents(Scanner csv) {
+        
 
+
+    }
+
+    private static int gradYeartoInt(String s) {
+        try { return Integer.parseInt(s) }
+        catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+
+    private static boolean yntoBool(String s) {
+        return s.equals("Yes");
     }
 
 }

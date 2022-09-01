@@ -3,7 +3,7 @@ $path = '';
 require("../config.php");
 require("functions/basic_html_functions.php");
 require("functions/database_functions.php");
-require("functions/companies_form_function.php");
+require("functions/student_form_functions.php");
 $page = isset($_GET["page"])?$_GET["page"]:"search";
 if(isset($_POST) && isset($_POST["page"]) && $_POST["page"]=="save"){
   process_student_form_data($_POST);

@@ -1,13 +1,13 @@
 <?PHP
-function display_industry_form($industry=""){
+/* function display_contact_form($contact=""){
 
-    if($industry==""){
-        $formHTML = "<h2>Add Industry</h2>";
-        $industry["sid"] = "";
-        $industry["last_name"] = "";
-        $industry["first_name"] = "";
-        $industry["grad_year"] = "";
-        $industry["alumni"] = "";
+    if($contact==""){
+        $formHTML = "<h2>Add Contact</h2>";
+        $contact["sid"] = "";
+        $contact["last_name"] = "";
+        $contact["first_name"] = "";
+        $contact["grad_year"] = "";
+        $contact["alumni"] = "";
         $checked = "";
     }else{
         $formHTML = "<h2>Edit Industry</h2>";
@@ -33,52 +33,59 @@ function display_industry_page_navigation($currentPage){
     
     echo $navHTML;
 }
-function display_industry_search_form(){
-    echo '<h2>Search for an industry by Name</h2><form method=get action=_self>
-        Enter Industry Name:<input name="word" type="text">
+*/
+
+function display_contact_search_form(){
+    echo '<h2>Search for an industry contact by name</h2><form method=get action=_self>
+        Enter Industry Contact Name:<input name="word" type="text">
         <input type="submit" value="Search">
     </form><br/><br/>';
-
 }
 
-function display_industry_list($data=null){
+function display_contact_list($data=null){
     if(!is_array($data)){
         echo "";
     }
     foreach ($data as $row) {
-            echo "<a href='industries.php?page=industry&sid=".$row['industryID']."'>";
+            echo "<a href='contacts.php?page=contact&id=".$row['contactID']."'>";
             echo $row['firstName']." ".$row['lastName']."<br />\n";
             echo "</a>";
     }
 }
 
-function display_industry_info($industry){
-    if(!is_array($industry)){
+function display_contact_info($contact){
+    if(!is_array($contact)){
         echo "Industry Information not found";
     }
-    echo "<h4><b>Name:</b> ".$industry['firstName']." ".$industry['lastName']."</h4>\n";
-    echo "<h4><b>Grad Year:</b> ".$industry['gradYear']."</h4>\n";
+    echo "<h4><b>Name:</b> ".$contact['firstName']." ".$contact['lastName']."</h4>\n";
+    echo "<h4><b>Workphone:</b> ".$contact['workphone']."</h4>\n";
+    echo "<h4><b>Cellphone:</b> ".$contact['cellphone']."</h4>\n";
+    echo "<h4><b>Homephone:</b> ".$contact['homephone']."</h4>\n";
+    if ($contact['formerStudentID'] != NULL) {
+        echo "<h4><em>This person is an Etown College Alumni</em></h4> ";
+    }
+    
 }
 
-function get_industry_by_name($sid){
+function get_contact_by_name($id){
     $pdo = connect_to_db();
-    $stmt = $pdo->prepare("SELECT * FROM industry WHERE industryID=:sid");
-    $stmt->execute([':sid' => $sid]); 
+    $stmt = $pdo->prepare("SELECT * FROM contact WHERE contactID=:id");
+    $stmt->execute([':id' => $id]); 
     $data = $stmt->fetch();
     return $data;
 } 
-function get_industries_by_name($word){
+function get_contacts_by_name($word){
     if($word==""){
         return get_all_industries_from_db();
     }
     $pdo = connect_to_db();
-    $stmt = $pdo->prepare("SELECT * FROM industry WHERE first_name like :name or last_name like :name");
+    $stmt = $pdo->prepare("SELECT * FROM contact WHERE first_name like :name or last_name like :name");
     $stmt->execute([':name' => $word]); 
     $data = $stmt->fetch();
     return $data;
 }    
-function get_all_industry_from_db(){
+function get_all_contacts_from_db(){
     $pdo = connect_to_db();
-    $data = $pdo->query("SELECT * FROM industry order by lastName,firstName")->fetchAll();
+    $data = $pdo->query("SELECT * FROM contact order by lastName,firstName")->fetchAll();
     return $data;
 }

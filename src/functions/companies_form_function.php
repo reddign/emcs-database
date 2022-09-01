@@ -20,7 +20,7 @@ function display_company_form($student=""){
         <input name="sid" type="hidden"  value="'.$student["sid"].'">
         <input name="page" type="hidden" value="save">
         alumni<input name="alumni" type="checkbox" value="1" $checked><BR/>
-        <input type="submit" value="Add Student">
+        <input type="submit" value="Add Company">
     </form>';
 
 }

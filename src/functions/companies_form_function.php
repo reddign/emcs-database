@@ -84,3 +84,26 @@ function get_all_company_from_db(){
     $data = $pdo->query("SELECT * FROM student order by lastName,firstName")->fetchAll();
     return $data;
 }
+function addStudent($arrayData){
+    $last_name = $arrayData["last_name"];
+    $first_name = $arrayData["first_name"];
+    $gradYear = $arrayData["grad_year"];
+    $alumni = isset($arrayData["alumni"])?1:0;
+    $pdo = connect_to_db();
+    $stmt = $pdo->prepare("insert into student (firstName,lastName,gradYear,alumni) VALUES (:first,:last,:gradYr,:alum)");
+    $stmt->execute([':first' => $first_name, ":last"=> $last_name, ":gradYr"=>$gradYear,":alum"=>$alumni]);
+    $sid = $pdo->lastInsertId();
+    header("location:students.php?page=student&sid=".$sid."&message=Student Added");
+  
+}
+function editStudent($arrayData){
+    $last_name = $arrayData["last_name"];
+    $first_name = $arrayData["first_name"];
+    $gradYear = $arrayData["grad_year"];
+    $alumni = $arrayData["alumni"];
+    $sid = $arrayData["studentID"];
+    $pdo = connect_to_db();
+    $stmt = $pdo->prepare("update student  set firstName = :first, lastName = :last, gradYear = :gradYr,alumni=:alum where studentID=:sid");
+    $stmt->execute([':first' => $first_name, ":last"=> $last_name, ":gradYr"=>$gradYear,":alum"=>$alumni,":sid"=>$sid]);
+    header("location:students.php?page=student&sid=".$sid."&message=Student Updated");
+}

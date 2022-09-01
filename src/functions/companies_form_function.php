@@ -13,7 +13,7 @@ function display_company_form($student=""){
         $formHTML = "<h2>Edit Student</h2>";
         $checked = ($student["alumni"]==1)? " checked " : "";
     }
-    echo '<form method=post action=students.php>
+    echo '<form method=post action=companies.php>
         First Name:<input name="first_name" type="text" value="'.$student["first_name"].'"><BR/>
         Last Name:<input name="last_name" type="text" value="'.$student["last_name"].'"><BR/>
         Grad Year:<input name="grad_year" type="text" value="'.$student["grad_year"].'"><BR/>
@@ -93,7 +93,7 @@ function addCompany($arrayData){
     $stmt = $pdo->prepare("insert into student (firstName,lastName,gradYear,alumni) VALUES (:first,:last,:gradYr,:alum)");
     $stmt->execute([':first' => $first_name, ":last"=> $last_name, ":gradYr"=>$gradYear,":alum"=>$alumni]);
     $sid = $pdo->lastInsertId();
-    header("location:students.php?page=student&sid=".$sid."&message=Student Added");
+    header("location:companies.php?page=student&sid=".$sid."&message=Student Added");
   
 }
 function editCompany($arrayData){
@@ -105,5 +105,5 @@ function editCompany($arrayData){
     $pdo = connect_to_db();
     $stmt = $pdo->prepare("update student  set firstName = :first, lastName = :last, gradYear = :gradYr,alumni=:alum where studentID=:sid");
     $stmt->execute([':first' => $first_name, ":last"=> $last_name, ":gradYr"=>$gradYear,":alum"=>$alumni,":sid"=>$sid]);
-    header("location:students.php?page=student&sid=".$sid."&message=Student Updated");
+    header("location:companies.php?page=student&sid=".$sid."&message=Student Updated");
 }

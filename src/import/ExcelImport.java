@@ -1,5 +1,6 @@
 import java.io.*;
-import java.util.Scanner;
+import java.io.BufferedReader;  
+import java.io.FileReader;  
 
 public class ExcelImport {
 
@@ -15,37 +16,48 @@ public class ExcelImport {
             return -1;
         }
         
-        Scanner csv;
-        try { csv = new Scanner(new File(args[0])); }
+        BufferedReader csv;
+        try { csv = new BufferedReader(new FileReader(args[0])); }
         catch (FileNotFoundException e) {
             System.out.println("Invalid argument 0. File not found");
             return -1;
         }
 
-        switch(i) {
-            case NULL:
-                System.out.println("Import type cannot be 0");
-                return -1;
-            case STUDENTS:
-                importStudents(csv);
-                break;
-        }
+        try {
+            switch(i) {
+                case NULL:
+                    System.out.println("Import type cannot be 0");
+                    break;
+                case STUDENTS:
+                    importStudents(csv);
+                    break;
+            }
+        } catch (IOException e) { System.out.println("error occured while reading file"); }
+
+        try { csv.close(); }
+        catch (IOException e) { return -1; }
 
         return 0;
 
     }
 
-    private static void importStudents(Scanner csv) {
+    private static void importStudents(BufferedReader csv) throws IOException {
         
+        String line;
+        int year;
+        boolean alumn;
 
+        while ((line = csv.readLine()) != null) {
+            String[] entry = line.split(",");
+            year = gradYeartoInt(entry[2]);
+            alumn = yntoBool(entry[3]);
+        }
 
     }
 
     private static int gradYeartoInt(String s) {
         try { return Integer.parseInt(s); }
-        catch (NumberFormatException e) {
-            return -1;
-        }
+        catch (NumberFormatException e) { return -1; }
     }
 
     private static boolean yntoBool(String s) {

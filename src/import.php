@@ -18,7 +18,7 @@ require("includes/header.php");
 
   <?php
   echo "This page will allow importing of data from Microsoft Lists.";
-  echo "<br>"
+  echo "<br>";
 
   echo  '<a href="https://www.imdb.com/title/tt1482459/">Click here</a>';
   ?>

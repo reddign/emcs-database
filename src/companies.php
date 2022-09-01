@@ -10,6 +10,7 @@ require("includes/header.php");
 
   display_page_heading("Companies","");
 
+  //This function displays the three button on the web page
   display_company_page_navigation("Companies");
  
  

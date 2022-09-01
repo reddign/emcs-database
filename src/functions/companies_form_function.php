@@ -1,5 +1,5 @@
 <?PHP
-function display_company_form($student=""){
+function display_compan_form($student=""){
 
     if($student==""){
         $formHTML = "<h2>Add Student</h2>";

@@ -15,12 +15,12 @@ function display_meeting_form($meeting=""){
         #$checked = ($student["alumni"]==1)? " checked " : "";
     }
     echo '<form method=post action=meetings.php>
-        Meeting Name: <input style="margin-bottom:16px;" name="meeting_name" type="text" value='.$meeting["name"].'><BR/>
-        Date: <input style="margin-bottom:16px;" name="date" type="text" value='.$meeting["date"].'><BR/>
-        Start Time: <input style="margin-bottom:16px;" name="start_time" type="text" value='.$meeting["start_time"].'><BR/>
-        Location: <input style="margin-bottom:16px;" name="location" type="text" value='.$meeting["location"].'><BR/>
+        Meeting Name: <input style="margin-bottom:14px;" name="name" type="text" value='.$meeting["name"].'><BR/>
+        Date: <input style="margin-bottom:14px;" name="date" type="text" value='.$meeting["date"].'><BR/>
+        Start Time: <input style="margin-bottom:14px;" name="start_time" type="text" value='.$meeting["start_time"].'><BR/>
+        Location: <input style="margin-bottom:14px;" name="location" type="text" value='.$meeting["location"].'><BR/>
         Meeting Notes:<BR/>
-        <textarea style="width:60%;" name="location" type="text" value='.$meeting["notes"].'></textarea><BR/>
+        <textarea style="width:60%;" name="notes" type="text" value='.$meeting["notes"].'></textarea><BR/>
         <input name="mid" type="hidden">
         <input name="page" type="hidden" value="save">
         <input type="submit" value="Add Meeting">
@@ -88,24 +88,25 @@ function get_all_meetings_from_db(){
 }
 function process_meeting_form_data($arrayData){
     print_r($arrayData);
-    $sid = $arrayData["sid"];
-    if($sid==""){
-        addStudent($arrayData);
+    $mid = $arrayData["mid"];
+    if($mid==""){
+        addMeeting($arrayData);
     }else{
-        editStudent($arrayData);
+        editMeeting($arrayData);
     }
     
 }
 function addMeeting($arrayData){
-    $last_name = $arrayData["last_name"];
-    $first_name = $arrayData["first_name"];
-    $gradYear = $arrayData["grad_year"];
-    $alumni = isset($arrayData["alumni"])?1:0;
+    $meeting_name = $arrayData["name"];
+    $date = $date["date"];
+    $start_time = $arrayData["start_time"];
+    $location = $arrayData["location"];
+    $notes = $arrayData["notes"];
     $pdo = connect_to_db();
-    $stmt = $pdo->prepare("insert into student (firstName,lastName,gradYear,alumni) VALUES (:first,:last,:gradYr,:alum)");
-    $stmt->execute([':first' => $first_name, ":last"=> $last_name, ":gradYr"=>$gradYear,":alum"=>$alumni]);
+    $stmt = $pdo->prepare("INSERT INTO meeting (meetingName,date,starttime,notes,location) VALUES (:mName,:mDate,:start_time,:mNotes,:mLocation)");
+    $stmt->execute([':mName' => $meeting_name, ":mDate"=> $date, ":start_time"=>$start_time,":mNotes"=>$notes, ":mLocation"=>$location]);
     $sid = $pdo->lastInsertId();
-    header("location:students.php?page=student&sid=".$sid."&message=Student Added");
+    header("location:meetings.php?page=meeting&mid=".$mid."&message=Meeting Added");
   
 }
 function editMeeting($arrayData){

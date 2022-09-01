@@ -7,6 +7,12 @@ require("functions/database_functions.php");
 #require("functions/student_form_functions.php");
 require("functions/meeting_form_functions.php");
 
+$page = isset($_GET["page"])?$_GET["page"]:"search";
+if(isset($_POST) && isset($_POST["page"]) && $_POST["page"]=="save"){
+  process_meeting_form_data($_POST);
+  exit;
+}
+
 ?>
  <!-- Header -->
   <?php
@@ -14,7 +20,7 @@ require("functions/meeting_form_functions.php");
     display_meeting_page_navigation("Meetings");
   ?>
   <?php
-  $page = isset($_GET["page"])?$_GET["page"]:"search";
+  //$page = isset($_GET["page"])?$_GET["page"]:"search";
   switch($page){
     case "search":
       $string = isset($_GET["search"])?$_GET["search"]:"";

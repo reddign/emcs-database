@@ -1,5 +1,5 @@
 <?PHP
-function display_student_form($student=""){
+function display_company_form($student=""){
 
     if($student==""){
         $formHTML = "<h2>Add Student</h2>";
@@ -24,7 +24,7 @@ function display_student_form($student=""){
     </form>';
 
 }
-function display_student_page_navigation($currentPage){
+function display_company_page_navigation($currentPage){
     $navHTML  = '<h4><div style="margin-top:5px;margin-bottom:45px;">';
     $navHTML .= '<a href="students.php?page=search" class="selected">Search</a>';
     $navHTML .= ' | ';
@@ -41,7 +41,7 @@ function display_search_form(){
 
 }
 
-function display_student_list($data=null){
+function display_company_list($data=null){
     if(!is_array($data)){
         echo "";
     }
@@ -52,7 +52,7 @@ function display_student_list($data=null){
     }
 }
 
-function display_student_info($student){
+function display_company_info($student){
     if(!is_array($student)){
         echo "Student Information not found";
     }
@@ -60,14 +60,14 @@ function display_student_info($student){
     echo "<h4><b>Grad Year:</b> ".$student['gradYear']."</h4>\n";
 }
 
-function get_student($sid){
+function get_company($sid){
     $pdo = connect_to_db();
     $stmt = $pdo->prepare("SELECT * FROM student WHERE studentID=:sid");
     $stmt->execute([':sid' => $sid]); 
     $data = $stmt->fetch();
     return $data;
 } 
-function get_student_by_name($word){
+function get_company_by_name($word){
     if($word==""){
         return get_all_students_from_db();
     }
@@ -77,7 +77,7 @@ function get_student_by_name($word){
     $data = $stmt->fetch();
     return $data;
 }    
-function get_all_students_from_db(){
+function get_all_company_from_db(){
     $pdo = connect_to_db();
     $data = $pdo->query("SELECT * FROM student order by lastName,firstName")->fetchAll();
     return $data;

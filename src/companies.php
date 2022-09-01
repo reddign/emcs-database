@@ -14,7 +14,7 @@ require("includes/header.php");
 
   display_page_heading("Companies","");
 
-  display_company_page_navigation("Students");
+  display_company_page_navigation("Companies");
  
  
   switch($page){

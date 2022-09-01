@@ -8,7 +8,7 @@ $page = isset($_GET["page"])?$_GET["page"]:"search";
 require("includes/header.php");
 
 
-  display_page_heading("Students","");
+  display_page_heading("Companies","");
 
   display_student_page_navigation("Students");
  

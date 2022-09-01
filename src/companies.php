@@ -3,7 +3,7 @@ $path = '';
 require("../config.php");
 require("functions/basic_html_functions.php");
 require("functions/database_functions.php");
-require("functions/student_form_functions.php");
+require("functions/companies_form_function.php");
 $page = isset($_GET["page"])?$_GET["page"]:"search";
 if(isset($_POST) && isset($_POST["page"]) && $_POST["page"]=="save"){
   process_student_form_data($_POST);
@@ -14,7 +14,7 @@ require("includes/header.php");
 
   display_page_heading("Companies","");
 
-  display_company_page_navigation("Students");
+  display_company_page_navigation("Companies");
  
  
   switch($page){

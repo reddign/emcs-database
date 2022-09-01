@@ -1,5 +1,5 @@
 <?PHP
-function display_meeting_form($student=""){
+function display_add_meeting_form($meeting=""){
 
     if($student==""){
         $formHTML = "<h2>Add Student</h2>";
@@ -26,16 +26,16 @@ function display_meeting_form($student=""){
 }
 function display_meeting_page_navigation($currentPage){
     $navHTML  = '<h4><div style="margin-top:5px;margin-bottom:45px;">';
-    $navHTML .= '<a href="students.php?page=search" class="selected">Search</a>';
+    $navHTML .= '<a href="meetings.php?page=search" class="selected">Search</a>';
     $navHTML .= ' | ';
-    $navHTML .= '<a href="students.php?page=add">Add Student</a>';
+    $navHTML .= '<a href="meetings.php?page=add">Add Meeting</a>';
     $navHTML .= ' <div> </h4>';
     
     echo $navHTML;
 }
-function display_search_form(){
-    echo '<h2>Search for a student by Name</h2><form method=get action=_self>
-        Enter Student Name:<input name="word" type="text">
+function display_search_meeting_form(){
+    echo '<h2>Search for a meeting by date.</h2><form method=get action=_self>
+        Enter Meeting Date: <input name="word" type="text">
         <input type="submit" value="Search">
     </form><br/><br/>';
 
@@ -60,7 +60,7 @@ function display_student_info($student){
     echo "<h4><b>Grad Year:</b> ".$student['gradYear']."</h4>\n";
 }
 
-function get_student($sid){
+function get_meeting($meetingid){
     $pdo = connect_to_db();
     $stmt = $pdo->prepare("SELECT * FROM student WHERE studentID=:sid");
     $stmt->execute([':sid' => $sid]); 
@@ -77,7 +77,7 @@ function get_student_by_name($word){
     $data = $stmt->fetch();
     return $data;
 }    
-function get_all_students_from_db(){
+function get_all_meetings_from_db(){
     $pdo = connect_to_db();
     $data = $pdo->query("SELECT * FROM student order by lastName,firstName")->fetchAll();
     return $data;

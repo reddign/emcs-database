@@ -89,13 +89,13 @@ function get_all_company_from_db(){
     $data = $pdo->query("SELECT * FROM student order by lastName,firstName")->fetchAll();
     return $data;
 }
-function process_student_form_data($arrayData){
+function process_company_form_data($arrayData){
     print_r($arrayData);
     $sid = $arrayData["sid"];
     if($sid==""){
-        addStudent($arrayData);
+        addCompany($arrayData);
     }else{
-        editStudent($arrayData);
+        editCompany($arrayData);
     }
     
 }

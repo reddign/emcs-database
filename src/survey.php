@@ -15,7 +15,7 @@ require("includes/header.php");
   ?>
   <p>
     <label for="interest_txt">What are your interests:</label>
-    <textarea rows = "3"><input type="text" name="interests" id="interest_txt"></textarea>
+    <textarea rows = "3"></textarea>
   </p>
 
 

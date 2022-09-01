@@ -56,18 +56,21 @@ function display_meeting_list($data=null){
     }
 }
 
-function display_student_info($student){
-    if(!is_array($student)){
-        echo "Student Information not found";
+function display_meeting_info($meeting){
+    if(!is_array($meeting)){
+        echo "Meeting Information not found";
     }
-    echo "<h4><b>Name:</b> ".$student['firstName']." ".$student['lastName']."</h4>\n";
-    echo "<h4><b>Grad Year:</b> ".$student['gradYear']."</h4>\n";
+    echo "<h4><b>Meeting Name:</b> ".$meeting['name']."</h4>\n";
+    echo "<h4><b>Date:</b> ".$meeting['date']."</h4>\n";
+    echo "<h4><b>Start Time:</b> ".$meeting['start_time']."</h4>\n";
+    echo "<h4><b>Location:</b> ".$meeting['location']."</h4>\n";
+    echo "<h4><b>Notes:</b> ".$meeting['notes']."</h4>\n";
 }
 
-function get_meeting($meetingid){
+function get_meeting($mid){
     $pdo = connect_to_db();
-    $stmt = $pdo->prepare("SELECT * FROM student WHERE studentID=:sid");
-    $stmt->execute([':sid' => $sid]); 
+    $stmt = $pdo->prepare("SELECT * FROM meeting WHERE meetingID=:mid");
+    $stmt->execute([':mid' => $mid]); 
     $data = $stmt->fetch();
     return $data;
 } 
@@ -105,7 +108,7 @@ function addMeeting($arrayData){
     $pdo = connect_to_db();
     $stmt = $pdo->prepare("INSERT INTO meeting (meetingName,date,starttime,notes,location) VALUES (:mName,:mDate,:start_time,:mNotes,:mLocation)");
     $stmt->execute([':mName' => $meeting_name, ":mDate"=> $date, ":start_time"=>$start_time,":mNotes"=>$notes, ":mLocation"=>$location]);
-    $sid = $pdo->lastInsertId();
+    $mid = $pdo->lastInsertId();
     header("location:meetings.php?page=meeting&mid=".$mid."&message=Meeting Added");
   
 }
@@ -118,5 +121,5 @@ function editMeeting($arrayData){
     $pdo = connect_to_db();
     $stmt = $pdo->prepare("update student  set firstName = :first, lastName = :last, gradYear = :gradYr,alumni=:alum where studentID=:sid");
     $stmt->execute([':first' => $first_name, ":last"=> $last_name, ":gradYr"=>$gradYear,":alum"=>$alumni,":sid"=>$sid]);
-    header("location:students.php?page=student&sid=".$sid."&message=Student Updated");
+    header("location:students.php?page=student&sid=".$mid."&message=Student Updated");
 }

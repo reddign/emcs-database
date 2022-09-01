@@ -36,12 +36,12 @@ if(isset($_POST) && isset($_POST["page"]) && $_POST["page"]=="save"){
       $meeting = get_student($mid);
       display_meeting_list($meeting);
       display_meeting_form($meeting);
-      break;
-    case "meeting":
-      $sid = isset($_GET["sid"])?$_GET["sid"]:"";
-      $student = get_student($sid);
-      display_student_info($student);
       break;*/
+    case "meeting":
+      $mid = isset($_GET["mid"])?$_GET["mid"]:"";
+      $meeting = get_meeting($mid);
+      display_meeting_info($meeting);
+      break;
   }
   
   require("includes/footer.php");

@@ -29,6 +29,8 @@ function display_company_page_navigation($currentPage){
     $navHTML .= '<a href="companies.php?page=search" class="selected">Search</a>';
     $navHTML .= ' | ';
     $navHTML .= '<a href="companies.php?page=add">Add Company</a>';
+    $navHTML .= ' | ';
+    $navHTML .= '<a href="companies.php?page=add">Update Company Data</a>';
     $navHTML .= ' <div> </h4>';
     
     echo $navHTML;

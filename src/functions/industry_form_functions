@@ -1,41 +1,41 @@
 <?PHP
-function display_industry_form($student=""){
+function display_industry_form($industry=""){
 
-    if($student==""){
-        $formHTML = "<h2>Add Student</h2>";
-        $student["sid"] = "";
-        $student["last_name"] = "";
-        $student["first_name"] = "";
-        $student["grad_year"] = "";
-        $student["alumni"] = "";
+    if($industry==""){
+        $formHTML = "<h2>Add Industry</h2>";
+        $industry["sid"] = "";
+        $industry["last_name"] = "";
+        $industry["first_name"] = "";
+        $industry["grad_year"] = "";
+        $industry["alumni"] = "";
         $checked = "";
     }else{
-        $formHTML = "<h2>Edit Student</h2>";
-        $checked = ($student["alumni"]==1)? " checked " : "";
+        $formHTML = "<h2>Edit Industry</h2>";
+        $checked = ($industry["alumni"]==1)? " checked " : "";
     }
-    echo '<form method=post action=students.php>
-        First Name:<input name="first_name" type="text" value={$student["first_name"]}><BR/>
-        Last Name:<input name="last_name" type="text" value={$student["last_name"]}><BR/>
-        Grad Year:<input name="grad_year" type="text" value={$student["grad_year"]}><BR/>
+    echo '<form method=post action=industries.php>
+        First Name:<input name="first_name" type="text" value={$industry["first_name"]}><BR/>
+        Last Name:<input name="last_name" type="text" value={$industry["last_name"]}><BR/>
+        Grad Year:<input name="grad_year" type="text" value={$industry["grad_year"]}><BR/>
         <input name="sid" type="hidden">
         <input name="page" type="hidden" value="save">
         alumni<input name="alumni" type="checkbox" value="1" $checked><BR/>
-        <input type="submit" value="Add Student">
+        <input type="submit" value="Add Industry">
     </form>';
 
 }
 function display_industry_page_navigation($currentPage){
     $navHTML  = '<h4><div style="margin-top:5px;margin-bottom:45px;">';
-    $navHTML .= '<a href="students.php?page=search" class="selected">Search</a>';
+    $navHTML .= '<a href="industries.php?page=search" class="selected">Search</a>';
     $navHTML .= ' | ';
-    $navHTML .= '<a href="students.php?page=add">Add Student</a>';
+    $navHTML .= '<a href="industries.php?page=add">Add Industry</a>';
     $navHTML .= ' <div> </h4>';
     
     echo $navHTML;
 }
 function display_industry_search_form(){
-    echo '<h2>Search for a student by Name</h2><form method=get action=_self>
-        Enter Student Name:<input name="word" type="text">
+    echo '<h2>Search for an industry by Name</h2><form method=get action=_self>
+        Enter Industry Name:<input name="word" type="text">
         <input type="submit" value="Search">
     </form><br/><br/>';
 
@@ -46,39 +46,39 @@ function display_industry_list($data=null){
         echo "";
     }
     foreach ($data as $row) {
-            echo "<a href='students.php?page=student&sid=".$row['studentID']."'>";
+            echo "<a href='industries.php?page=industry&sid=".$row['industryID']."'>";
             echo $row['firstName']." ".$row['lastName']."<br />\n";
             echo "</a>";
     }
 }
 
-function display_industry_info($student){
-    if(!is_array($student)){
-        echo "Student Information not found";
+function display_industry_info($industry){
+    if(!is_array($industry)){
+        echo "Industry Information not found";
     }
-    echo "<h4><b>Name:</b> ".$student['firstName']." ".$student['lastName']."</h4>\n";
-    echo "<h4><b>Grad Year:</b> ".$student['gradYear']."</h4>\n";
+    echo "<h4><b>Name:</b> ".$industry['firstName']." ".$industry['lastName']."</h4>\n";
+    echo "<h4><b>Grad Year:</b> ".$industry['gradYear']."</h4>\n";
 }
 
 function get_industry_by_name($sid){
     $pdo = connect_to_db();
-    $stmt = $pdo->prepare("SELECT * FROM student WHERE studentID=:sid");
+    $stmt = $pdo->prepare("SELECT * FROM industry WHERE industryID=:sid");
     $stmt->execute([':sid' => $sid]); 
     $data = $stmt->fetch();
     return $data;
 } 
-function get_industry_by_name($word){
+function get_industries_by_name($word){
     if($word==""){
-        return get_all_students_from_db();
+        return get_all_industries_from_db();
     }
     $pdo = connect_to_db();
-    $stmt = $pdo->prepare("SELECT * FROM student WHERE first_name like :name or last_name like :name");
+    $stmt = $pdo->prepare("SELECT * FROM industry WHERE first_name like :name or last_name like :name");
     $stmt->execute([':name' => $word]); 
     $data = $stmt->fetch();
     return $data;
 }    
 function get_all_industry_from_db(){
     $pdo = connect_to_db();
-    $data = $pdo->query("SELECT * FROM student order by lastName,firstName")->fetchAll();
+    $data = $pdo->query("SELECT * FROM industry order by lastName,firstName")->fetchAll();
     return $data;
 }

@@ -9,6 +9,7 @@ require("functions/meeting_form_functions.php");
 
 $page = isset($_GET["page"])?$_GET["page"]:"search";
 if(isset($_POST) && isset($_POST["page"]) && $_POST["page"]=="save"){
+  debug_to_console($_POST);
   process_meeting_form_data($_POST);
   exit;
 }
@@ -31,12 +32,12 @@ if(isset($_POST) && isset($_POST["page"]) && $_POST["page"]=="save"){
     case "add":
       display_meeting_form();
       break;
-    /*case "edit":
-      mid = isset($_GET["mid"])?$_GET["mid"]:"";
-      $meeting = get_student($mid);
+    case "edit":
+      $mid = isset($_GET["mid"])?$_GET["mid"]:"";
+      $meeting = get_meeting($mid);
       display_meeting_list($meeting);
       display_meeting_form($meeting);
-      break;*/
+      break;
     case "meeting":
       $mid = isset($_GET["mid"])?$_GET["mid"]:"";
       $meeting = get_meeting($mid);

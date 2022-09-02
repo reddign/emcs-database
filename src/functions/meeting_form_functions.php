@@ -4,26 +4,26 @@ function display_meeting_form($meeting=""){
     if($meeting==""){
         $formHTML = "<h2>Add Meeting</h2>";
         $meeting = [];
-        $meeting["name"] = "";
+        $meeting["meetingName"] = "";
         $meeting["date"] = "";
-        $meeting["start_time"] = "";
+        $meeting["starttime"] = "";
         $meeting["location"] = "";
         $meeting["notes"] = "";
-        #$checked = "";
+        $submitText = "Add Meeting";
     }else{
         $formHTML = "<h2>Edit Meeting</h2>";
-        #$checked = ($student["alumni"]==1)? " checked " : "";
+        $submitText = "Save Meeting";
     }
     echo '<form method=post action=meetings.php>
-        Meeting Name: <input style="margin-bottom:14px;" name="name" type="text" value='.$meeting["name"].'><BR/>
+        Meeting Name: <input style="margin-bottom:14px;" name="meetingName" type="text" value="'.$meeting["meetingName"].'"><BR/>
         Date: <input style="margin-bottom:14px;" name="date" type="text" value='.$meeting["date"].'><BR/>
-        Start Time: <input style="margin-bottom:14px;" name="start_time" type="text" value='.$meeting["start_time"].'><BR/>
+        Start Time: <input style="margin-bottom:14px;" name="starttime" type="text" value='.$meeting["starttime"].'><BR/>
         Location: <input style="margin-bottom:14px;" name="location" type="text" value='.$meeting["location"].'><BR/>
         Meeting Notes:<BR/>
-        <textarea style="width:60%;" name="notes" type="text" value='.$meeting["notes"].'></textarea><BR/>
+        <textarea style="width:60%;" rows="5" name="notes" type="text">'.$meeting["notes"].'</textarea><BR/>
         <input name="mid" type="hidden">
         <input name="page" type="hidden" value="save">
-        <input type="submit" value="Add Meeting">
+        <input type="submit" value="'.$submitText.'">
     </form>';
 
 }
@@ -46,13 +46,15 @@ function display_search_meeting_form(){
 }
 
 function display_meeting_list($data=null){
-    if(!is_array($data)){
+    if(!is_array($data[0])){
         echo "";
     }
-    foreach ($data as $row) {
-            echo "<a href='meetings.php?page=meeting&mid=".$row['meetingID']."'>";
-            echo $row['date'].", ".$row['meetingName']."<br/>\n";
-            echo "</a>";
+    else{
+        foreach ($data as $row) {
+                echo "<a href='meetings.php?page=meeting&mid=".$row['meetingID']."'>";
+                echo $row['date'].", ".$row['meetingName']."<br/>\n";
+                echo "</a>";
+        }
     }
 }
 
@@ -62,11 +64,13 @@ function display_meeting_info($meeting){
     }
     #echo "<h4><b>Testing: </b>".array_keys($meeting)[4]."</h4>";
     #echo "<h4><b>Testing2: </b>".$meeting[2]."</h4>";
+    echo "<a href='meetings.php?page=edit&mid=".$meeting['meetingID']."'> Edit Info </a>\n";
     echo "<h4><b>Meeting Name:</b> ".$meeting['meetingName']."</h4>\n";
     echo "<h4><b>Date:</b> ".$meeting['date']."</h4>\n";
     echo "<h4><b>Start Time:</b> ".$meeting['starttime']."</h4>\n";
     echo "<h4><b>Location:</b> ".$meeting['location']."</h4>\n";
     echo "<h4><b>Notes:</b> ".$meeting['notes']."</h4>\n";
+
 }
 
 function get_meeting($mid){
@@ -94,6 +98,7 @@ function get_all_meetings_from_db(){
 }
 function process_meeting_form_data($arrayData){
     print_r($arrayData);
+    debug_to_console($arrayData);
     $mid = $arrayData["mid"];
     if($mid==""){
         addMeeting($arrayData);
@@ -103,9 +108,9 @@ function process_meeting_form_data($arrayData){
     
 }
 function addMeeting($arrayData){
-    $name = $arrayData["name"];
+    $name = $arrayData["meetingName"];
     $date = $arrayData["date"];
-    $start_time = $arrayData["start_time"];
+    $start_time = $arrayData["starttime"];
     $location = $arrayData["location"];
     $notes = $arrayData["notes"];
     $pdo = connect_to_db();
@@ -116,13 +121,22 @@ function addMeeting($arrayData){
   
 }
 function editMeeting($arrayData){
-    $last_name = $arrayData["last_name"];
-    $first_name = $arrayData["first_name"];
-    $gradYear = $arrayData["grad_year"];
-    $alumni = $arrayData["alumni"];
-    $sid = $arrayData["studentID"];
+    $name = $arrayData["meetingName"];
+    $date = $arrayData["date"];
+    $start_time = $arrayData["starttime"];
+    $location = $arrayData["location"];
+    $notes = $arrayData["notes"];
+    $mid = $arrayData["mid"];
     $pdo = connect_to_db();
-    $stmt = $pdo->prepare("update student  set firstName = :first, lastName = :last, gradYear = :gradYr,alumni=:alum where studentID=:mid");
-    $stmt->execute([':first' => $first_name, ":last"=> $last_name, ":gradYr"=>$gradYear,":alum"=>$alumni,":mid"=>$mid]);
-    header("location:students.php?page=student&mid=".$mid."&message=Student Updated");
+    $stmt = $pdo->prepare("UPDATE meeting SET meetingName=:mName, date=STR_TO_DATE(:mDate, '%m/%d/%y'), starttime=:start_time, notes=:mNotes, location=:mLocation WHERE meetingID=:mid");
+    $stmt->execute([':mName' => $name, ":mDate"=> $date, ":start_time"=>$start_time,":mNotes"=>$notes,":mLocation"=>$location,":mid"=>$mid]);
+    header("location:meetings.php?page=meeting&mid=".$mid."&message=Meeting Updated");
+}
+
+function debug_to_console($data) {
+    $output = $data;
+    if (is_array($output))
+        $output = implode(',', $output);
+
+    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
 }

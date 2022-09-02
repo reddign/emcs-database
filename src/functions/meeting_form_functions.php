@@ -38,11 +38,11 @@ function display_meeting_page_navigation($currentPage){
     echo $navHTML;
 }
 function display_search_meeting_form(){
-    echo '<h2>Search for a meeting by name.</h2><form method=get action=_self>
-        Enter Meeting Name: <input name="word" type="text">
+    echo '<h2>Search for a meeting by Name</h2><form method=get action="meetings.php">
+        Enter Meeting Name: <input name="search" type="text">
+        <input name="page" type="hidden" value="search">
         <input type="submit" value="Search">
     </form><br/><br/>';
-
 }
 
 function display_meeting_list($data=null){
@@ -50,8 +50,8 @@ function display_meeting_list($data=null){
         echo "";
     }
     foreach ($data as $row) {
-            echo "<a href='meetings.php?page=meeting&sid=".$row['meetingID']."'>";
-            echo $row['meetingName']." ".$row['date']."<br />\n";
+            echo "<a href='meetings.php?page=meeting&mid=".$row['meetingID']."'>";
+            echo $row['meetingName']." ".$row['date']."<br/>\n";
             echo "</a>";
     }
 }
@@ -60,9 +60,11 @@ function display_meeting_info($meeting){
     if(!is_array($meeting)){
         echo "Meeting Information not found";
     }
-    echo "<h4><b>Meeting Name:</b> ".$meeting['name']."</h4>\n";
+    #echo "<h4><b>Testing: </b>".array_keys($meeting)[4]."</h4>";
+    #echo "<h4><b>Testing2: </b>".$meeting[2]."</h4>";
+    echo "<h4><b>Meeting Name:</b> ".$meeting['meetingName']."</h4>\n";
     echo "<h4><b>Date:</b> ".$meeting['date']."</h4>\n";
-    echo "<h4><b>Start Time:</b> ".$meeting['start_time']."</h4>\n";
+    echo "<h4><b>Start Time:</b> ".$meeting['starttime']."</h4>\n";
     echo "<h4><b>Location:</b> ".$meeting['location']."</h4>\n";
     echo "<h4><b>Notes:</b> ".$meeting['notes']."</h4>\n";
 }
@@ -79,9 +81,10 @@ function get_meeting_by_name($word){
         return get_all_meetings_from_db();
     }
     $pdo = connect_to_db();
-    $stmt = $pdo->prepare("SELECT * FROM meeting WHERE meetingName like :name or last_name like :name");
-    $stmt->execute([':name' => $word]); 
-    $data = $stmt->fetch();
+    $stmt = $pdo->prepare("SELECT * FROM meeting WHERE meetingName LIKE :mName;");
+    $stmt->execute([':mName' => $word."%"]); 
+    $data = $stmt->fetchall();
+    
     return $data;
 }    
 function get_all_meetings_from_db(){
@@ -100,14 +103,14 @@ function process_meeting_form_data($arrayData){
     
 }
 function addMeeting($arrayData){
-    $meeting_name = $arrayData["name"];
-    $date = $date["date"];
+    $name = $arrayData["name"];
+    $date = $arrayData["date"];
     $start_time = $arrayData["start_time"];
     $location = $arrayData["location"];
     $notes = $arrayData["notes"];
     $pdo = connect_to_db();
-    $stmt = $pdo->prepare("INSERT INTO meeting (meetingName,date,starttime,notes,location) VALUES (:mName,:mDate,:start_time,:mNotes,:mLocation)");
-    $stmt->execute([':mName' => $meeting_name, ":mDate"=> $date, ":start_time"=>$start_time,":mNotes"=>$notes, ":mLocation"=>$location]);
+    $stmt = $pdo->prepare("INSERT INTO meeting (meetingName,date,starttime,notes,location) VALUES (:mName,STR_TO_DATE(:mDate, '%m/%d/%y'),:start_time,:mNotes,:mLocation)");
+    $stmt->execute([':mName'=>$name, ":mDate"=>$date, ":start_time"=>$start_time,":mNotes"=>$notes, ":mLocation"=>$location]);
     $mid = $pdo->lastInsertId();
     header("location:meetings.php?page=meeting&mid=".$mid."&message=Meeting Added");
   
@@ -119,7 +122,7 @@ function editMeeting($arrayData){
     $alumni = $arrayData["alumni"];
     $sid = $arrayData["studentID"];
     $pdo = connect_to_db();
-    $stmt = $pdo->prepare("update student  set firstName = :first, lastName = :last, gradYear = :gradYr,alumni=:alum where studentID=:sid");
-    $stmt->execute([':first' => $first_name, ":last"=> $last_name, ":gradYr"=>$gradYear,":alum"=>$alumni,":sid"=>$sid]);
-    header("location:students.php?page=student&sid=".$mid."&message=Student Updated");
+    $stmt = $pdo->prepare("update student  set firstName = :first, lastName = :last, gradYear = :gradYr,alumni=:alum where studentID=:mid");
+    $stmt->execute([':first' => $first_name, ":last"=> $last_name, ":gradYr"=>$gradYear,":alum"=>$alumni,":mid"=>$mid]);
+    header("location:students.php?page=student&mid=".$mid."&message=Student Updated");
 }

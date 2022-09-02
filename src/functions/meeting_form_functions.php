@@ -9,6 +9,7 @@ function display_meeting_form($meeting=""){
         $meeting["starttime"] = "";
         $meeting["location"] = "";
         $meeting["notes"] = "";
+        $meeting["mid"] = "";
         $submitText = "Add Meeting";
     }else{
         $formHTML = "<h2>Edit Meeting</h2>";
@@ -16,12 +17,12 @@ function display_meeting_form($meeting=""){
     }
     echo '<form method=post action=meetings.php>
         Meeting Name: <input style="margin-bottom:14px;" name="meetingName" type="text" value="'.$meeting["meetingName"].'"><BR/>
-        Date: <input style="margin-bottom:14px;" name="date" type="text" value='.$meeting["date"].'><BR/>
+        Date: <input style="margin-bottom:14px;" name="date" type="date" value='.$meeting["date"].'><BR/>
         Start Time: <input style="margin-bottom:14px;" name="starttime" type="text" value='.$meeting["starttime"].'><BR/>
         Location: <input style="margin-bottom:14px;" name="location" type="text" value='.$meeting["location"].'><BR/>
         Meeting Notes:<BR/>
         <textarea style="width:60%;" rows="5" name="notes" type="text">'.$meeting["notes"].'</textarea><BR/>
-        <input name="mid" type="hidden">
+        <input name="mid" type="hidden" value="'.$meeting["mid"].'">
         <input name="page" type="hidden" value="save">
         <input type="submit" value="'.$submitText.'">
     </form>';
@@ -46,7 +47,10 @@ function display_search_meeting_form(){
 }
 
 function display_meeting_list($data=null){
-    if(!is_array($data[0])){
+    if($data==null){
+        echo "<h3><b>No Meetings Found...</b></h2>";
+    }
+    else if(!is_array($data[0])){
         echo "";
     }
     else{
@@ -98,7 +102,7 @@ function get_all_meetings_from_db(){
 }
 function process_meeting_form_data($arrayData){
     print_r($arrayData);
-    debug_to_console($arrayData);
+    debug_to_console($arrayData["mid"]);
     $mid = $arrayData["mid"];
     if($mid==""){
         addMeeting($arrayData);
@@ -114,7 +118,7 @@ function addMeeting($arrayData){
     $location = $arrayData["location"];
     $notes = $arrayData["notes"];
     $pdo = connect_to_db();
-    $stmt = $pdo->prepare("INSERT INTO meeting (meetingName,date,starttime,notes,location) VALUES (:mName,STR_TO_DATE(:mDate, '%m/%d/%y'),:start_time,:mNotes,:mLocation)");
+    $stmt = $pdo->prepare("INSERT INTO meeting (meetingName,date,starttime,notes,location) VALUES (:mName,:mDate,:start_time,:mNotes,:mLocation)");
     $stmt->execute([':mName'=>$name, ":mDate"=>$date, ":start_time"=>$start_time,":mNotes"=>$notes, ":mLocation"=>$location]);
     $mid = $pdo->lastInsertId();
     header("location:meetings.php?page=meeting&mid=".$mid."&message=Meeting Added");

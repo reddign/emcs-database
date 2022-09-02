@@ -51,7 +51,7 @@ function display_meeting_list($data=null){
     }
     foreach ($data as $row) {
             echo "<a href='meetings.php?page=meeting&mid=".$row['meetingID']."'>";
-            echo $row['meetingName']." ".$row['date']."<br/>\n";
+            echo $row['date'].", ".$row['meetingName']."<br/>\n";
             echo "</a>";
     }
 }

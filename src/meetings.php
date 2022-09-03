@@ -9,7 +9,7 @@ require("functions/meeting_form_functions.php");
 
 $page = isset($_GET["page"])?$_GET["page"]:"search";
 if(isset($_POST) && isset($_POST["page"]) && $_POST["page"]=="save"){
-  debug_to_console($_POST);
+  #debug_to_console($_POST);
   process_meeting_form_data($_POST);
   exit;
 }
@@ -24,8 +24,10 @@ if(isset($_POST) && isset($_POST["page"]) && $_POST["page"]=="save"){
   //$page = isset($_GET["page"])?$_GET["page"]:"search";
   switch($page){
     case "search":
-      $string = isset($_GET["search"])?$_GET["search"]:"";
-      $meetings = get_meeting_by_name($string);
+      $search = isset($_GET["search"])?$_GET["search"]:"";
+      $searchDate = isset($_GET["searchDate"])?$_GET["searchDate"]:"";
+      #$meetings = get_meetings_by_name($search);
+      $meetings = get_meetings_by_search($search, $searchDate);
       display_search_meeting_form();
       display_meeting_list($meetings);
       break;
@@ -35,6 +37,7 @@ if(isset($_POST) && isset($_POST["page"]) && $_POST["page"]=="save"){
     case "edit":
       $mid = isset($_GET["mid"])?$_GET["mid"]:"";
       $meeting = get_meeting($mid);
+      #echo "<h2><b>".$meeting["meetingID"]."</b></h2>";
       display_meeting_list($meeting);
       display_meeting_form($meeting);
       break;

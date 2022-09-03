@@ -9,7 +9,7 @@ function display_meeting_form($meeting=""){
         $meeting["starttime"] = "";
         $meeting["location"] = "";
         $meeting["notes"] = "";
-        $meeting["mid"] = "";
+        $meeting["meetingID"] = "";
         $submitText = "Add Meeting";
     }else{
         $formHTML = "<h2>Edit Meeting</h2>";
@@ -22,7 +22,7 @@ function display_meeting_form($meeting=""){
         Location: <input style="margin-bottom:14px;" name="location" type="text" value='.$meeting["location"].'><BR/>
         Meeting Notes:<BR/>
         <textarea style="width:60%;" rows="5" name="notes" type="text">'.$meeting["notes"].'</textarea><BR/>
-        <input name="mid" type="hidden" value="'.$meeting["mid"].'">
+        <input name="mid" type="hidden" value="'.$meeting["meetingID"].'">
         <input name="page" type="hidden" value="save">
         <input type="submit" value="'.$submitText.'">
     </form>';
@@ -39,8 +39,9 @@ function display_meeting_page_navigation($currentPage){
     echo $navHTML;
 }
 function display_search_meeting_form(){
-    echo '<h2>Search for a meeting by Name</h2><form method=get action="meetings.php">
-        Enter Meeting Name: <input name="search" type="text">
+    echo '<h2>Search for a meeting:</h2><form method=get action="meetings.php">
+        Search By Name: <input style="margin-bottom:14px;" name="search" type="text"></br>
+        Search By Date: <input style="margin-bottom:14px;" name="searchDate" type="date"></br>
         <input name="page" type="hidden" value="search">
         <input type="submit" value="Search">
     </form><br/><br/>';
@@ -84,7 +85,7 @@ function get_meeting($mid){
     $data = $stmt->fetch();
     return $data;
 } 
-function get_meeting_by_name($word){
+function get_meetings_by_name($word){
     if($word==""){
         return get_all_meetings_from_db();
     }
@@ -94,7 +95,41 @@ function get_meeting_by_name($word){
     $data = $stmt->fetchall();
     
     return $data;
-}    
+}
+
+function get_meetings_by_date($date){
+    if($date==""){
+        return get_all_meetings_from_db();
+    }
+    $pdo = connect_to_db();
+    #$stmt = $pdo->prepare("SELECT * FROM meeting WHERE date = STR_TO_DATE(:mDate, '%Y,%m,%d')");
+    $stmt = $pdo->prepare("SELECT * FROM meeting WHERE date = :mDate");
+    $stmt->execute([':mDate' => $date]); 
+    $data = $stmt->fetchall();
+    
+    return $data;
+}
+
+function get_meetings_by_search($mName, $mDate){
+    if($mName=="" && $mDate==""){
+        return get_all_meetings_from_db();
+    }
+    else if($mDate==""){
+        return get_meetings_by_name($mName);
+    }
+    else if($mName==""){
+        return get_meetings_by_date($mDate);
+    }
+    else{ // Search by name and date at the same time
+        $pdo = connect_to_db();
+        $stmt = $pdo->prepare("SELECT * FROM meeting WHERE meetingName LIKE :mName AND date = :mDate;");
+        $stmt->execute([':mName'=>$mName."%", ':mDate'=>$mDate]);
+        $data = $stmt->fetchall();
+        return $data;
+    }
+    return;
+}
+
 function get_all_meetings_from_db(){
     $pdo = connect_to_db();
     $data = $pdo->query("SELECT * FROM meeting order by date;")->fetchAll();
@@ -132,7 +167,7 @@ function editMeeting($arrayData){
     $notes = $arrayData["notes"];
     $mid = $arrayData["mid"];
     $pdo = connect_to_db();
-    $stmt = $pdo->prepare("UPDATE meeting SET meetingName=:mName, date=STR_TO_DATE(:mDate, '%m/%d/%y'), starttime=:start_time, notes=:mNotes, location=:mLocation WHERE meetingID=:mid");
+    $stmt = $pdo->prepare("UPDATE meeting SET meetingName=:mName, date=:mDate, starttime=:start_time, notes=:mNotes, location=:mLocation WHERE meetingID=:mid");
     $stmt->execute([':mName' => $name, ":mDate"=> $date, ":start_time"=>$start_time,":mNotes"=>$notes,":mLocation"=>$location,":mid"=>$mid]);
     header("location:meetings.php?page=meeting&mid=".$mid."&message=Meeting Updated");
 }

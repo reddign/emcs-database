@@ -68,8 +68,6 @@ function display_meeting_info($meeting){
     if(!is_array($meeting)){
         echo "Meeting Information not found";
     }
-    #echo "<h4><b>Testing: </b>".array_keys($meeting)[4]."</h4>";
-    #echo "<h4><b>Testing2: </b>".$meeting[2]."</h4>";
     echo "<a href='meetings.php?page=edit&mid=".$meeting['meetingID']."'> Edit Info </a>\n";
     echo "<h4><b>Meeting Name:</b> ".$meeting['meetingName']."</h4>\n";
     echo "<h4><b>Date:</b> ".date('m/d/Y', strtotime($meeting['date']))."</h4>\n";
@@ -123,15 +121,14 @@ function get_meetings_by_loc($mLoc){
     return $data;
 }
 
-function get_meetings_by_textfield($fieldName, $text){
-    if($text==""){
-        return get_all_meetings_from_db();
-    }
+function combined_search($mName, $mDate, $mLoc){
     $pdo = connect_to_db();
-    $stmt = $pdo->prepare("SELECT * FROM meeting WHERE :fieldName LIKE :fieldText;");
-    $stmt->execute([':fieldName'=>$fieldName, ':fieldText'=>$text.'%']);
+    if($mDate==""){
+        $mDate="%";
+    }
+    $stmt = $pdo->prepare("SELECT * FROM meeting WHERE meetingName LIKE :mName AND location LIKE :mLoc AND date LIKE :mDate;");
+    $stmt->execute([':mName'=>$mName."%", ':mLoc'=>$mLoc."%", ':mDate'=>$mDate]);
     $data = $stmt->fetchall();
-
     return $data;
 }
 
@@ -139,43 +136,7 @@ function get_meetings_by_search($mName, $mDate, $mLoc){
     if($mName=="" && $mDate=="" && $mLoc==""){
         return get_all_meetings_from_db();
     }
-    else if($mDate==""){
-        if($mName==""){
-            #return get_meetings_by_textfield('location', $mLoc);
-            return get_meetings_by_loc($mLoc);
-        }
-        else if($mLoc==""){
-            #return get_meetings_by_textfield('meetingName', $mName);
-            return get_meetings_by_name($mName);
-        }
-        else{
-            $pdo = connect_to_db();
-            $stmt = $pdo->prepare("SELECT * FROM meeting WHERE meetingName LIKE :mName AND location LIKE :mLoc;");
-            $stmt->execute([':mName'=>$mName."%", ':mLoc'=>$mLoc."%"]);
-            $data = $stmt->fetchall();
-            return $data;
-        }
-    }
-    else if($mName==""){
-        if($mLoc==""){
-            return get_meetings_by_date($mDate);
-        }
-        else{
-            $pdo = connect_to_db();
-            $stmt = $pdo->prepare("SELECT * FROM meeting WHERE location LIKE :mLoc AND date = :mDate;");
-            $stmt->execute([':mLoc'=>$mLoc."%", ':mDate'=>$mDate]);
-            $data = $stmt->fetchall();
-            return $data;
-        }
-    }
-    else{ // Search by name and date at the same time
-        $pdo = connect_to_db();
-        $stmt = $pdo->prepare("SELECT * FROM meeting WHERE meetingName LIKE :mName AND date = :mDate;");
-        $stmt->execute([':mName'=>$mName."%", ':mDate'=>$mDate]);
-        $data = $stmt->fetchall();
-        return $data;
-    }
-    return;
+    return combined_search($mName, $mDate, $mLoc);
 }
 
 function get_all_meetings_from_db(){

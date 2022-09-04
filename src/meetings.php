@@ -26,8 +26,9 @@ if(isset($_POST) && isset($_POST["page"]) && $_POST["page"]=="save"){
     case "search":
       $search = isset($_GET["search"])?$_GET["search"]:"";
       $searchDate = isset($_GET["searchDate"])?$_GET["searchDate"]:"";
+      $searchLoc = isset($_GET["searchLoc"])?$_GET["searchLoc"]:"";
       #$meetings = get_meetings_by_name($search);
-      $meetings = get_meetings_by_search($search, $searchDate);
+      $meetings = get_meetings_by_search($search, $searchDate, $searchLoc);
       display_search_meeting_form();
       display_meeting_list($meetings);
       break;

@@ -4,24 +4,26 @@ function display_student_form($student=""){
     if($student==""){
         $formHTML = "<h2>Add Student</h2>";
         $student = [];
-        $student["sid"] = "";
-        $student["last_name"] = "";
-        $student["first_name"] = "";
-        $student["grad_year"] = "";
+        $student["studentID"] = "";
+        $student["lastName"] = "";
+        $student["firstName"] = "";
+        $student["gradYear"] = "";
         $student["alumni"] = "";
         $checked = "";
+        $buttonString = "Add Student";
     }else{
         $formHTML = "<h2>Edit Student</h2>";
         $checked = ($student["alumni"]==1)? " checked " : "";
+        $buttonString = "Edit Student";
     }
     echo '<form method=post action=students.php>
-        First Name:<input name="first_name" type="text" value="'.$student["first_name"].'"><BR/>
-        Last Name:<input name="last_name" type="text" value="'.$student["last_name"].'"><BR/>
-        Grad Year:<input name="grad_year" type="text" value="'.$student["grad_year"].'"><BR/>
-        <input name="sid" type="hidden"  value="'.$student["sid"].'">
+        First Name:<input name="first_name" type="text" value="'.$student["firstName"].'"><BR/>
+        Last Name:<input name="last_name" type="text" value="'.$student["lastName"].'"><BR/>
+        Grad Year:<input name="grad_year" type="text" value="'.$student["gradYear"].'"><BR/>
+        <input name="sid" type="hidden"  value="'.$student["studentID"].'">
         <input name="page" type="hidden" value="save">
         alumni<input name="alumni" type="checkbox" value="1" $checked><BR/>
-        <input type="submit" value="Add Student">
+        <input type="submit" value="'.$buttonString.'">
     </form>';
 
 }
@@ -46,6 +48,7 @@ function display_search_form(){
 function display_student_list($data=null){
     if(!is_array($data)){
         echo "";
+        return;
     }
     foreach ($data as $row) {
             echo "<a href='students.php?page=student&sid=".$row['studentID']."'>";
@@ -119,7 +122,7 @@ function editStudent($arrayData){
     $first_name = $arrayData["first_name"];
     $gradYear = $arrayData["grad_year"];
     $alumni = $arrayData["alumni"];
-    $sid = $arrayData["studentID"];
+    $sid = $arrayData["sid"];
     $pdo = connect_to_db();
     $stmt = $pdo->prepare("update student  set firstName = :first, lastName = :last, gradYear = :gradYr,alumni=:alum where studentID=:sid");
     $stmt->execute([':first' => $first_name, ":last"=> $last_name, ":gradYr"=>$gradYear,":alum"=>$alumni,":sid"=>$sid]);

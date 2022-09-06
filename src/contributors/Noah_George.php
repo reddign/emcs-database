@@ -11,6 +11,8 @@ require("../includes/header.php");
   </div>
 
   My name is Noah George and I am a seinor computer scienece major.
+
+  yooooooooooooooooo :)
   
 <?PHP
 require("../includes/footer.php");

@@ -20,7 +20,7 @@ function display_company_form($student=""){
         <input name="sid" type="hidden"  value="'.$student["sid"].'">
         <input name="page" type="hidden" value="save">
         alumni<input name="alumni" type="checkbox" value="1" $checked><BR/>
-        <input type="submit" value="Add Student">
+        <input type="submit" value="Add Company">
     </form>';
 
 }
@@ -60,13 +60,15 @@ function display_company_info($student){
     }
     echo "<h4><b>Name:</b> ".$student['firstName']." ".$student['lastName']."</h4>\n";
     echo "<h4><b>Grad Year:</b> ".$student['gradYear']."</h4>\n";
+    echo "<h4><b>Alumni:</b> ".($student['alumni']?"YES":"NO")."</h4>\n";
+    echo "<a href='companies.php?page=edit&sid=".$student['studentID']."'> Edit Info </a>\n";
 }
 
 function get_company($sid){
     $pdo = connect_to_db();
     $stmt = $pdo->prepare("SELECT * FROM student WHERE studentID=:sid");
     $stmt->execute([':sid' => $sid]); 
-    $data = $stmt->fetch();
+    $student = $stmt->fetch(PDO::FETCH_ASSOC);
     return $data;
 } 
 function get_company_by_name($word){
@@ -75,14 +77,27 @@ function get_company_by_name($word){
     }
     $pdo = connect_to_db();
     $stmt = $pdo->prepare("SELECT * FROM student WHERE first_name like :name or last_name like :name");
-    $stmt->execute([':name' => $word]); 
-    $data = $stmt->fetch();
+    $stmt->execute([':name' => $word."%"]); 
+    $data = [];
+    while($student =  $stmt->fetch(PDO::FETCH_ASSOC)){
+        $data[] = $student;
+    } 
     return $data;
 }    
 function get_all_company_from_db(){
     $pdo = connect_to_db();
     $data = $pdo->query("SELECT * FROM student order by lastName,firstName")->fetchAll();
     return $data;
+}
+function process_company_form_data($arrayData){
+    print_r($arrayData);
+    $sid = $arrayData["sid"];
+    if($sid==""){
+        addCompany($arrayData);
+    }else{
+        editCompany($arrayData);
+    }
+    
 }
 function addCompany($arrayData){
     $last_name = $arrayData["last_name"];

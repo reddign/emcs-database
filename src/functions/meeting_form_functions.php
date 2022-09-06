@@ -1,84 +1,190 @@
 <?PHP
-function display_meeting_form($student=""){
+function display_meeting_form($meeting=""){
 
-    if($student==""){
-        $formHTML = "<h2>Add Student</h2>";
-        $student["sid"] = "";
-        $student["last_name"] = "";
-        $student["first_name"] = "";
-        $student["grad_year"] = "";
-        $student["alumni"] = "";
-        $checked = "";
+    if($meeting==""){
+        $formHTML = "<h2>Add Meeting</h2>";
+        $meeting = [];
+        $meeting["meetingName"] = "";
+        $meeting["date"] = "";
+        $meeting["starttime"] = "";
+        $meeting["location"] = "";
+        $meeting["notes"] = "";
+        $meeting["meetingID"] = "";
+        $submitText = "Add Meeting";
     }else{
-        $formHTML = "<h2>Edit Student</h2>";
-        $checked = ($student["alumni"]==1)? " checked " : "";
+        $formHTML = "<h2>Edit Meeting</h2>";
+        $submitText = "Save Meeting";
     }
-    echo '<form method=post action=students.php>
-        First Name:<input name="first_name" type="text" value={$student["first_name"]}><BR/>
-        Last Name:<input name="last_name" type="text" value={$student["last_name"]}><BR/>
-        Grad Year:<input name="grad_year" type="text" value={$student["grad_year"]}><BR/>
-        <input name="sid" type="hidden">
+    echo '<form method=post action=meetings.php>
+        Meeting Name: <input style="margin-bottom:14px;" name="meetingName" type="text" value="'.$meeting["meetingName"].'"><BR/>
+        Date: <input style="margin-bottom:14px;" name="date" type="date" value='.$meeting["date"].'><BR/>
+        Start Time: <input style="margin-bottom:14px;" name="starttime" type="time" value='.$meeting["starttime"].'><BR/>
+        Location: <input style="margin-bottom:14px;" name="location" type="text" value='.$meeting["location"].'><BR/>
+        Meeting Notes:<BR/>
+        <textarea style="width:60%;" rows="5" name="notes" type="text">'.$meeting["notes"].'</textarea><BR/>
+        <input name="mid" type="hidden" value="'.$meeting["meetingID"].'">
         <input name="page" type="hidden" value="save">
-        alumni<input name="alumni" type="checkbox" value="1" $checked><BR/>
-        <input type="submit" value="Add Student">
+        <input type="submit" value="'.$submitText.'">
     </form>';
 
 }
+
 function display_meeting_page_navigation($currentPage){
     $navHTML  = '<h4><div style="margin-top:5px;margin-bottom:45px;">';
-    $navHTML .= '<a href="students.php?page=search" class="selected">Search</a>';
+    $navHTML .= '<a href="meetings.php?page=search" class="selected">Search</a>';
     $navHTML .= ' | ';
-    $navHTML .= '<a href="students.php?page=add">Add Student</a>';
+    $navHTML .= '<a href="meetings.php?page=add">Add Meeting</a>';
     $navHTML .= ' <div> </h4>';
     
     echo $navHTML;
 }
-function display_search_form(){
-    echo '<h2>Search for a student by Name</h2><form method=get action=_self>
-        Enter Student Name:<input name="word" type="text">
+function display_search_meeting_form(){
+    echo '<h2>Search for a meeting:</h2><form method=get action="meetings.php">
+        Search By Name: <input style="margin-bottom:14px;" name="search" type="text"></br>
+        Search By Date: <input style="margin-bottom:14px;" name="searchDate" type="date"></br>
+        Search By Location: <input style="margin-bottom:14px;" name="searchLoc" type="text"></br>
+        <input name="page" type="hidden" value="search">
         <input type="submit" value="Search">
     </form><br/><br/>';
-
 }
 
 function display_meeting_list($data=null){
-    if(!is_array($data)){
+    if($data==null){
+        echo "<h3><b>No Meetings Found...</b></h2>";
+    }
+    else if(!is_array($data[0])){
         echo "";
     }
-    foreach ($data as $row) {
-            echo "<a href='students.php?page=student&sid=".$row['studentID']."'>";
-            echo $row['firstName']." ".$row['lastName']."<br />\n";
-            echo "</a>";
+    else{
+        foreach ($data as $row) {
+                echo "<a href='meetings.php?page=meeting&mid=".$row['meetingID']."'>";
+                echo $row['date'].", ".$row['meetingName']."<br/>\n";
+                echo "</a>";
+        }
     }
 }
 
-function display_student_info($student){
-    if(!is_array($student)){
-        echo "Student Information not found";
+function display_meeting_info($meeting){
+    if(!is_array($meeting)){
+        echo "Meeting Information not found";
     }
-    echo "<h4><b>Name:</b> ".$student['firstName']." ".$student['lastName']."</h4>\n";
-    echo "<h4><b>Grad Year:</b> ".$student['gradYear']."</h4>\n";
+    echo "<a href='meetings.php?page=edit&mid=".$meeting['meetingID']."'> Edit Info </a>\n";
+    echo "<h4><b>Meeting Name:</b> ".$meeting['meetingName']."</h4>\n";
+    echo "<h4><b>Date:</b> ".date('m/d/Y', strtotime($meeting['date']))."</h4>\n";
+    echo "<h4><b>Start Time:</b> ".date('g:iA', strtotime($meeting['starttime']))."</h4>\n";
+    echo "<h4><b>Location:</b> ".$meeting['location']."</h4>\n";
+    echo "<h4><b>Notes:</b> ".$meeting['notes']."</h4>\n";
+
 }
 
-function get_student($sid){
+function get_meeting($mid){
     $pdo = connect_to_db();
-    $stmt = $pdo->prepare("SELECT * FROM student WHERE studentID=:sid");
-    $stmt->execute([':sid' => $sid]); 
+    $stmt = $pdo->prepare("SELECT * FROM meeting WHERE meetingID=:mid");
+    $stmt->execute([':mid' => $mid]); 
     $data = $stmt->fetch();
     return $data;
 } 
-function get_student_by_name($word){
+function get_meetings_by_name($word){
     if($word==""){
-        return get_all_students_from_db();
+        return get_all_meetings_from_db();
     }
     $pdo = connect_to_db();
-    $stmt = $pdo->prepare("SELECT * FROM student WHERE first_name like :name or last_name like :name");
-    $stmt->execute([':name' => $word]); 
-    $data = $stmt->fetch();
+    $stmt = $pdo->prepare("SELECT * FROM meeting WHERE meetingName LIKE :mName;");
+    $stmt->execute([':mName' => $word."%"]); 
+    $data = $stmt->fetchall();
+    
     return $data;
-}    
-function get_all_students_from_db(){
+}
+
+function get_meetings_by_date($date){
+    if($date==""){
+        return get_all_meetings_from_db();
+    }
     $pdo = connect_to_db();
-    $data = $pdo->query("SELECT * FROM student order by lastName,firstName")->fetchAll();
+    #$stmt = $pdo->prepare("SELECT * FROM meeting WHERE date = STR_TO_DATE(:mDate, '%Y,%m,%d')");
+    $stmt = $pdo->prepare("SELECT * FROM meeting WHERE date = :mDate;");
+    $stmt->execute([':mDate' => $date]); 
+    $data = $stmt->fetchall();
+    
     return $data;
+}
+
+function get_meetings_by_loc($mLoc){
+    if($mLoc==""){
+        return get_all_meetings_from_db();
+    }
+    $pdo = connect_to_db();
+    $stmt = $pdo->prepare("SELECT * FROM meeting WHERE location LIKE :mLoc;");
+    $stmt->execute([':mLoc' => $mLoc."%"]); 
+    $data = $stmt->fetchall();
+    
+    return $data;
+}
+
+function combined_search($mName, $mDate, $mLoc){
+    $pdo = connect_to_db();
+    if($mDate==""){
+        $mDate="%";
+    }
+    $stmt = $pdo->prepare("SELECT * FROM meeting WHERE meetingName LIKE :mName AND location LIKE :mLoc AND date LIKE :mDate;");
+    $stmt->execute([':mName'=>$mName."%", ':mLoc'=>$mLoc."%", ':mDate'=>$mDate]);
+    $data = $stmt->fetchall();
+    return $data;
+}
+
+function get_meetings_by_search($mName, $mDate, $mLoc){
+    if($mName=="" && $mDate=="" && $mLoc==""){
+        return get_all_meetings_from_db();
+    }
+    return combined_search($mName, $mDate, $mLoc);
+}
+
+function get_all_meetings_from_db(){
+    $pdo = connect_to_db();
+    $data = $pdo->query("SELECT * FROM meeting order by date;")->fetchAll();
+    return $data;
+}
+function process_meeting_form_data($arrayData){
+    print_r($arrayData);
+    debug_to_console($arrayData["mid"]);
+    $mid = $arrayData["mid"];
+    if($mid==""){
+        addMeeting($arrayData);
+    }else{
+        editMeeting($arrayData);
+    }
+    
+}
+function addMeeting($arrayData){
+    $name = $arrayData["meetingName"];
+    $date = $arrayData["date"];
+    $start_time = $arrayData["starttime"];
+    $location = $arrayData["location"];
+    $notes = $arrayData["notes"];
+    $pdo = connect_to_db();
+    $stmt = $pdo->prepare("INSERT INTO meeting (meetingName,date,starttime,notes,location) VALUES (:mName,:mDate,:start_time,:mNotes,:mLocation)");
+    $stmt->execute([':mName'=>$name, ":mDate"=>$date, ":start_time"=>$start_time,":mNotes"=>$notes, ":mLocation"=>$location]);
+    $mid = $pdo->lastInsertId();
+    header("location:meetings.php?page=meeting&mid=".$mid."&message=Meeting Added");
+  
+}
+function editMeeting($arrayData){
+    $name = $arrayData["meetingName"];
+    $date = $arrayData["date"];
+    $start_time = $arrayData["starttime"];
+    $location = $arrayData["location"];
+    $notes = $arrayData["notes"];
+    $mid = $arrayData["mid"];
+    $pdo = connect_to_db();
+    $stmt = $pdo->prepare("UPDATE meeting SET meetingName=:mName, date=:mDate, starttime=:start_time, notes=:mNotes, location=:mLocation WHERE meetingID=:mid");
+    $stmt->execute([':mName' => $name, ":mDate"=> $date, ":start_time"=>$start_time,":mNotes"=>$notes,":mLocation"=>$location,":mid"=>$mid]);
+    header("location:meetings.php?page=meeting&mid=".$mid."&message=Meeting Updated");
+}
+
+function debug_to_console($data) {
+    $output = $data;
+    if (is_array($output))
+        $output = implode(',', $output);
+
+    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
 }

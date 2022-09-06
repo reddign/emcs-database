@@ -1,13 +1,13 @@
 <?PHP
-/* function display_industry_form($industry=""){
+/* function display_contact_form($contact=""){
 
-    if($industry==""){
-        $formHTML = "<h2>Add Industry</h2>";
-        $industry["sid"] = "";
-        $industry["last_name"] = "";
-        $industry["first_name"] = "";
-        $industry["grad_year"] = "";
-        $industry["alumni"] = "";
+    if($contact==""){
+        $formHTML = "<h2>Add Contact</h2>";
+        $contact["sid"] = "";
+        $contact["last_name"] = "";
+        $contact["first_name"] = "";
+        $contact["grad_year"] = "";
+        $contact["alumni"] = "";
         $checked = "";
     }else{
         $formHTML = "<h2>Edit Industry</h2>";
@@ -35,25 +35,25 @@ function display_industry_page_navigation($currentPage){
 }
 */
 
-function display_industry_search_form(){
+function display_contact_search_form(){
     echo '<h2>Search for an industry contact by name</h2><form method=get action=_self>
         Enter Industry Contact Name:<input name="word" type="text">
         <input type="submit" value="Search">
     </form><br/><br/>';
 }
 
-function display_industry_list($data=null){
+function display_contact_list($data=null){
     if(!is_array($data)){
         echo "";
     }
     foreach ($data as $row) {
-            echo "<a href='contacts.php?page=contact&id=".$row['industryID']."'>";
+            echo "<a href='contacts.php?page=contact&id=".$row['contactID']."'>";
             echo $row['firstName']." ".$row['lastName']."<br />\n";
             echo "</a>";
     }
 }
 
-function display_industry_info($contact){
+function display_contact_info($contact){
     if(!is_array($contact)){
         echo "Industry Information not found";
     }
@@ -67,14 +67,14 @@ function display_industry_info($contact){
     
 }
 
-function get_industry_by_name($id){
+function get_contact_by_name($id){
     $pdo = connect_to_db();
     $stmt = $pdo->prepare("SELECT * FROM contact WHERE contactID=:id");
     $stmt->execute([':id' => $id]); 
     $data = $stmt->fetch();
     return $data;
 } 
-function get_industries_by_name($word){
+function get_contacts_by_name($word){
     if($word==""){
         return get_all_industries_from_db();
     }
@@ -84,7 +84,7 @@ function get_industries_by_name($word){
     $data = $stmt->fetch();
     return $data;
 }    
-function get_all_industry_from_db(){
+function get_all_contacts_from_db(){
     $pdo = connect_to_db();
     $data = $pdo->query("SELECT * FROM contact order by lastName,firstName")->fetchAll();
     return $data;

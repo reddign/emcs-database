@@ -13,7 +13,5 @@ require("../includes/header.php");
   Seamus is a senior Computer Science major at Etown.
   he is currently working with team Epsilon to implement some features for the site.
 
-  GOATED Clash Royale player - Aiden Walmer 
-
 <?PHP
 require("../includes/footer.php");

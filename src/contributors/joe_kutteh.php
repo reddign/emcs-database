@@ -10,7 +10,7 @@ require("../includes/header.php");
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
-  Joe is a senior engineering major at Etown.
+  Joe is a senior engineering major at Etown. This is an edit of his page.S
   
 <?PHP
 require("../includes/footer.php");

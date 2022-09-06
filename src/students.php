@@ -40,7 +40,6 @@ require("includes/header.php");
     case "edit":
       $sid = isset($_GET["sid"])?$_GET["sid"]:"";
       $student = get_student($sid);
-      display_student_list($student);
       display_student_form($student);
       break;
     case "student":

@@ -13,7 +13,7 @@ require("includes/header.php");
   The EMCS database was a project from the CS341 Software Engineering during the Fall of 2022. 
   During the first 4 weeks of class students worked as part of the EC🗲DZ software team using a Git repository to share code.  The students used their programming skills to add functionality to the software and practiced working as a agile software team.  Below is a picture of the students in the class and a detailed list of contributors.";
   <BR/>
-  <img src="images/HallwaySign.png">
+  <img src="images/classPhoto.png" width="800">
   <BR/>
   Click on the names to read about each team member and their contribution.
   <BR/>

@@ -5,18 +5,20 @@ require("functions/basic_html_functions.php");
 require("functions/database_functions.php");
 require("functions/student_form_functions.php");
 /*
-
 if(isset($_GET["page"])){
 
   $page = $_GET["page"];
 } else {
   $page = "search";
 } */
+//Sets the page value for display
 $page = isset($_GET["page"])?$_GET["page"]:"search";
+//If a form post lead the user here, we process the posted data in a function
 if(isset($_POST) && isset($_POST["page"]) && $_POST["page"]=="save"){
   process_student_form_data($_POST);
   exit;
 }
+//otherwise we display the page
 require("includes/header.php");
 
 

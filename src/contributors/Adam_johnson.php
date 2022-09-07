@@ -11,6 +11,7 @@ require("../includes/header.php");
   </div>
 
    I am a Junior in Computer Engineering at Etown. 
+   Adam is my roomate - Aiden's Edit
 
 <?PHP
 require("../includes/footer.php");

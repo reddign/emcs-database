@@ -10,11 +10,7 @@ require("../includes/header.php");
     <h1 class="w3-xxxlarge w3-text-red"><b>Nathan Griffin</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
-  Nathan is a senior engineering major at Etown.
-  He is currently working with team Xi to implement mobile-friendly features for the site.
-
-  :)
-========
+  Nathan is a senior engineering major at Etown. He has two dogs.
   
 
 <?PHP

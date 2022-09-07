@@ -18,7 +18,6 @@ require("../includes/header.php");
   </div>
 
   Alex is a Junior Computer Science major at Elizabethtown college.
->>>>>>>> 73f1c8e7220d8ebcdeb731b2ec8f4e1dba85fe96:src/contributors/alex_fox.php
-
+  He is currently working with team Omega to help users be able to recieve access to job openings and internships.
 <?PHP
 require("../includes/footer.php");

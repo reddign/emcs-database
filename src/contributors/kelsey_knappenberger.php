@@ -11,7 +11,8 @@ require("../includes/header.php");
   </div>
 
   Kelsey is a senior Information Systems major at Etown.
-  She is currently working with team Omega to create a log-in page for the site.
+  She is currently working with team Omega to help users be able to recieve access to job openings and internships.
+  Kelsey also has a very cute cat named Kyra.
 
 <?PHP
 require("../includes/footer.php");

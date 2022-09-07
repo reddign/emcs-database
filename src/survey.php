@@ -10,10 +10,11 @@ require("includes/header.php");
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
-  <?php
-  echo "This page will allow student's to complete an interest survey.";
-  ?>
+  <p>
 
+    <label for="sCode">Enter your survey code:</label>
+    <input type="text" name="code" id="sCode">
+</p>
 
 
 <?PHP

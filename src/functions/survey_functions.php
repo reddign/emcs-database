@@ -17,6 +17,11 @@ function login_checker($role) {
     }
 }
 
+/*  I imagine the students.php page will display student survey information if it exists. 
+    Student entries lacking in survey information would likely be the best place to have a button saying something like 'Email this student the survey form.'
+    Additionally this button should only be visibile/usable by someone with priveleged access to the site.
+*/
+
 // called to send email to students who have not taken the survey
 function email_survey_send($student_email) {
 $to = $student_email;
@@ -30,7 +35,7 @@ mail($to,$subject,$txt);
 
 // checks for valid code
 function code_checker($Code) {
-    while(i=0; i < count($Code) i++) {
+    for(i=0; i < count($Code); i++) {
         if ($Code = $Code[i]){
             return true;
         }
@@ -49,20 +54,20 @@ function addSurvey($arrayData){
     $surveyID = $arrayData["surveyID"];
     $interests = $arrayData["interests"];
     $careerGoals = $arrayData["careerGoals"];
-    $studentID = $arrayData["studentID"];
+    $sid = $arrayData["studentID"];
     $pdo = connect_to_db();
-    $stmt = $pdo->prepare("insert into student (firstName,lastName,gradYear,alumni) VALUES (:first,:last,:gradYr,:alum)");
-    $stmt->execute([':first' => $first_name, ":last"=> $last_name, ":gradYr"=>$gradYear,":alum"=>$alumni]);
+    $stmt = $pdo->prepare("insert into student_survey (surveyID,interests,careerGoals,studentID) VALUES (:first,:last,:gradYr,:alum)");
+    $stmt->execute([':surv' => $surveyID, ":inter"=> $interests, ":caree"=>$careerGoals,":stu"=>$studentID]);
     $sid = $pdo->lastInsertId();
-    header("location:students.php?page=student&sid=".$sid."&message=Student Added");
+    header("location:survey.php?page=survey&sid=".$sid."&message=Survey Accepted");
   
 }
 
 function display_survey_page_navigation($currentPage){
     $navHTML  = '<h4><div style="margin-top:5px;margin-bottom:45px;">';
-    $navHTML .= '<a href="students.php?page=search" class="selected">Email Code</a>';
+    $navHTML .= '<a href="survey.php?page=search" class="selected">Email Code</a>';
     $navHTML .= ' | ';
-    $navHTML .= '<a href="students.php?page=add">Take Survey</a>';
+    $navHTML .= '<a href="survey.php?page=add">Take Survey</a>';
     $navHTML .= ' <div> </h4>';
     
     echo $navHTML;

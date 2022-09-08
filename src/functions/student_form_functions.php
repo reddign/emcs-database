@@ -66,6 +66,8 @@ function display_student_info($student){
     echo "<h4><b>Alumni:</b> ".($student['alumni']?"YES":"NO")."</h4>\n";
     echo "<a href='students.php?page=edit&sid=".$student['studentID']."'> Edit Info </a>\n";
     
+    # Survey info here? And if no survey has been taken by the student, maybe a button here that would send the student an email directing them to take the survey.
+    # See the email function in survey_fuctions.php
 }
 
 function get_student($sid){

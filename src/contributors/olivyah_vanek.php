@@ -12,7 +12,7 @@ require("../includes/header.php");
 
   Olivyah is a 5th year Information Systems major at Etown.
   She is currently working with team Gamma to allow data to be imported via Excel or Microsoft Lists.
-  
+  Add a sentence 
 
 <?PHP
 require("../includes/footer.php");

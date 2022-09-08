@@ -19,7 +19,6 @@ require("../includes/header.php");
 
   Alex is a Junior Computer Science major at Elizabethtown college.
   He is currently working with team Omega to help users recieve access to job openings and internships.
-  Matthew Sutton has changed this file.
   
 <?PHP
 require("../includes/footer.php");

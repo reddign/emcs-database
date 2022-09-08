@@ -12,7 +12,7 @@ require("../includes/header.php");
 
   Adam is a junior computer science major at Etown.
   He is currently working with team Beta to provide access to industry contacts data.
-  He is also a robot who likes to work at the chocolate factory.
+  He is also a robot who likes
 
 <?PHP
 require("../includes/footer.php");

@@ -4,26 +4,28 @@ function display_company_form($student=""){
     if($student==""){
         $formHTML = "<h2>Add Student</h2>";
         $student = [];
-        $student["studentID"] = "";
-        $student["lastName"] = "";
-        $student["firstName"] = "";
-        $student["gradYear"] = "";
-        $student["alumni"] = "";
+        $student["companyID"] = "";
+        $student["companyName"] = "";
+        $student["address"] = "";
+        $student["city"] = "";
+        $student["state"] = "";
+        $student["zip"] = "";
+        $student["phone"] = "";
         $checked = "";
         $buttonString = "Add Student";
     }else{
         $formHTML = "<h2>Edit Student</h2>";
-        $checked = ($student["alumni"]==1)? " checked " : "";
         $buttonString = "Edit Student";
     }
     echo '<form method=post action=students.php>
-        First Name:<input name="first_name" type="text" value="'.$student["firstName"].'"><BR/>
-        Last Name:<input name="last_name" type="text" value="'.$student["lastName"].'"><BR/>
-        Grad Year:<input name="grad_year" type="text" value="'.$student["gradYear"].'"><BR/>
-        <input name="sid" type="hidden"  value="'.$student["studentID"].'">
-        <input name="page" type="hidden" value="save">
-        alumni<input name="alumni" type="checkbox" value="1" $checked><BR/>
-        <input type="submit" value="'.$buttonString.'">
+        Company Name:<input name="company_name" type="text" value="'.$student["companyName"].'"><BR/>
+        Address:<input name="address" type="text" value="'.$student["address"].'"><BR/>
+        City:<input name="city" type="text" value="'.$student["city"].'"><BR/>
+        State:<input name="state" type="text" value="'.$student["state"].'"><BR/>
+        Zip:<input name="zip" type="text" value="'.$student["zip"].'"><BR/>
+        Phone:<input name="phone" type="text" value="'.$student["phone"].'"><BR/>
+        <input name="companyid" type="hidden"  value="'.$student["companyID"].'">
+        <input name="page" type="hidden" value="save">  
     </form>';
 
 }

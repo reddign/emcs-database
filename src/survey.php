@@ -22,9 +22,9 @@ switch($page){
       display_survey_form();
       break;
     case "search":
-      echo "You do not have access to this page!"
+      echo "You do not have access to this page!";
       //TODO: add view page for admins
-      
+      break;
   }
   
   

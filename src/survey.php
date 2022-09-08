@@ -3,6 +3,8 @@ $path = '';
 require("includes/header.php");
 require("functions/survey_functions.php");
 
+display_survey_page_navigation("Survey");
+
 ?>
  <!-- Header -->
   <div class="w3-container" style="margin-top:80px" id="showcase">

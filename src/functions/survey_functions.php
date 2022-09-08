@@ -24,11 +24,12 @@ function login_checker($role) {
 */
 
 // called to send email to students who have not taken the survey
-function email_survey_send($student_email) {
+function email_survey_send($student_email,$link) {
 $to = $student_email;
 $subject = "Student Interest Survey";
-$txt = "Dear Blah, you have not completed your student interest survey. Please follow the link *link*
-and complete the survey. Here's your code 1111111 Thank you";
+$code = 0; # TODO generate access code
+$txt = "Dear Blah, \n\nYou have not completed your student interest survey. Please follow this link ($link)
+and complete the survey. Your access code is $code. \n\nThank you.\n Etown EMCS Department";
 
 mail($to,$subject,$txt);
 }

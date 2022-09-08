@@ -11,7 +11,6 @@ function display_company_form($student=""){
         $student["state"] = "";
         $student["zip"] = "";
         $student["phone"] = "";
-        $checked = "";
         $buttonString = "Add Company Info";
     }else{
         $formHTML = "<h2>Edit Student</h2>";
@@ -31,9 +30,9 @@ function display_company_form($student=""){
 }
 function display_company_page_navigation($currentPage){
     $navHTML  = '<h4><div style="margin-top:5px;margin-bottom:45px;">';
-    $navHTML .= '<a href="students.php?page=search" class="selected">Search</a>';
+    $navHTML .= '<a href="companies.php?page=search" class="selected">Search</a>';
     $navHTML .= ' | ';
-    $navHTML .= '<a href="students.php?page=add">Add Student</a>';
+    $navHTML .= '<a href="companies.php?page=add">Add Company Info</a>';
     $navHTML .= ' <div> </h4>';
     
     echo $navHTML;
@@ -53,20 +52,23 @@ function display_company_list($data=null){
         return;
     }
     foreach ($data as $row) {
-            echo "<a href='students.php?page=student&sid=".$row['studentID']."'>";
-            echo $row['firstName']." ".$row['lastName']."<br />\n";
+            echo "<a href='companies.php?page=student&sid=".$row['companyID']."'>";
+            echo $row['companyName']."<br />\n";
             echo "</a>";
     }
 }
 
 function display_company_info($student){
     if(!is_array($student)){
-        echo "Student Information not found";
+        echo "Company Information not found";
     }
-    echo "<h4><b>Name:</b> ".$student['firstName']." ".$student['lastName']."</h4>\n";
-    echo "<h4><b>Grad Year:</b> ".$student['gradYear']."</h4>\n";
-    echo "<h4><b>Alumni:</b> ".($student['alumni']?"YES":"NO")."</h4>\n";
-    echo "<a href='students.php?page=edit&sid=".$student['studentID']."'> Edit Info </a>\n";
+    echo "<h4><b>Name:</b> ".$student['companyName']."</h4>\n";
+    echo "<h4><b>Address:</b> ".$student['address']."</h4>\n";
+    echo "<h4><b>City:</b> ".$student['city']."</h4>\n";
+    echo "<h4><b>State:</b> ".$student['state']."</h4>\n";
+    echo "<h4><b>Zip:</b> ".$student['zip']."</h4>\n";
+    echo "<h4><b>Phone:</b> ".$student['phone']."</h4>\n";
+    echo "<a href='companies.php?page=edit&sid=".$student['companyID']."'> Edit Info </a>\n";
     
 }
 
@@ -108,10 +110,12 @@ function process_company_form_data($arrayData){
     
 }
 function addcompany($arrayData){
-    $last_name = $arrayData["last_name"];
-    $first_name = $arrayData["first_name"];
-    $gradYear = $arrayData["grad_year"];
-    $alumni = isset($arrayData["alumni"])?1:0;
+    $company_name = $arrayData["company_name"];
+    $address = $arrayData["address"];
+    $city = $arrayData["city"];
+    $state = $arrayData["state"];
+    $zip = $arrayData["zip"];
+    $phone = $arrayData["phone"];
     $pdo = connect_to_db();
     $stmt = $pdo->prepare("insert into student (firstName,lastName,gradYear,alumni) VALUES (:first,:last,:gradYr,:alum)");
     $stmt->execute([':first' => $first_name, ":last"=> $last_name, ":gradYr"=>$gradYear,":alum"=>$alumni]);

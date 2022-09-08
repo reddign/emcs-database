@@ -17,9 +17,10 @@ function login_checker($role) {
     }
 }
 
-/*  I imagine the students.php page will display student survey information if it exists. 
-    Student entries lacking in survey information would likely be the best place to have a button saying something like 'Email this student the survey form.'
-    Additionally this button should only be visibile/usable by someone with priveleged access to the site.
+/*  TODO: I imagine the students.php page will display student survey information if it exists. 
+    Student entries lacking in survey information would likely be the best place to have a button 
+    saying something like 'Email this student the survey form.'Additionally this button should only 
+    be visibile/usable by someone with priveleged access to the site.
 */
 
 // called to send email to students who have not taken the survey

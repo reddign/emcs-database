@@ -5,7 +5,7 @@ require("functions/basic_html_functions.php");
 require("functions/database_functions.php");
 require("functions/survey_functions.php");
 
-$page = isset($_GET["page"])?$_GET["page"]:"Survey";
+$page = isset($_GET["page"])?$_GET["page"]:"add";
 display_survey_page_navigation("Survey");
 
 switch($page){

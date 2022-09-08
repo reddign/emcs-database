@@ -24,7 +24,7 @@ switch($page){
     case "search":
       echo "You do not have access to this page!"
       //TODO: add view page for admins
-      break;
+      
   }
   
   

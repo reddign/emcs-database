@@ -1,32 +1,35 @@
 <?PHP
 require("functions/basic_html_functions.php");
 require("functions/database_functions.php");
-function display_industry_form($industry=""){
+function display_contact_form($industry=""){
 
     if($industry==""){
-        $formHTML = "<h2>Add Industry</h2>";
-        $industry["cid"] = "";
+        $formHTML = "<h2>Add Contact</h2>";
+        $industry["contactID"] = "";
         $industry["last_name"] = "";
         $industry["first_name"] = "";
-        $industry["Work_phone"] = "";
-        $industry["Cell_phone"] = "";
-        $industry["Home_phone"] = "";
-        $industry["alumni"] = "";
+        $industry["work_phone"] = "";
+        $industry["cell_phone"] = "";
+        $industry["home_phone"] = "";
+        $industry["formerStudentID"] = "";
         $checked = "";
+        $buttonString = "Add Contact";
     }else{
-        $formHTML = "<h2>Edit Industry</h2>";
-        $checked = ($industry["alumni"]==1)? " checked " : "";
+        $formHTML = "<h2>Edit Contact</h2>";
+        $checked = ($industry["FormerStudentID"]==1)? " checked " : "";
+        $buttonString = "Edit Contact";
     }
     echo '<form method=post action=industries.php>
-        First Name:<input name="first_name" type="text" value={$industry["first_name"]}><BR/>
-        Last Name:<input name="last_name" type="text" value={$industry["last_name"]}><BR/>
-        Work Phone:<input name="Work_phone" type="text" value={$industry["Work_phone"]}><BR/>
-        Cell Phone:<input name="Cell_phone" type="text" value={$industry["Cell_phone"]}><BR/>
-        Home Phone:<input name="Home_phone" type="text" value={$industry["Home_phone"]}><BR/>
-        <input name="cid" type="hidden">
+        First Name:<input name="first_name" type="text" value="' .$industry["first_name"].'"><BR/>
+        Last Name:<input name="last_name" type="text" value="' .$industry["last_name"].'"><BR/>
+        Work Phone:<input name="work_phone" type="text" value="' .$industry["work_phone"].'"><BR/>
+        Cell Phone:<input name="cell_phone" type="text" value="' .$industry["cell_phone"].'"><BR/>
+        Home Phone:<input name="home_phone" type="text" value="' .$industry["home_phone"].'"><BR/>
+        Former Student ID:<input name="home_ph" type="text" value="' .$industry["formerStudentID"].'"><BR/>
+        <input name="contactID" type="text" value="' .$industry["contactID"].'">
         <input name="page" type="hidden" value="save">
-        alumni<input name="alumni" type="checkbox" value="1" $checked><BR/>
-        <input type="submit" value="Add Industry">
+        <input type="submit" value="'.$buttonString.'">
+
     </form>';
 
 }

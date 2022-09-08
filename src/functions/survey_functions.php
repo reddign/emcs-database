@@ -1,9 +1,23 @@
 <?PHP
 
-/*  I imagine the students.php page will display student survey information if it exists. 
-    Student entries lacking in survey information would likely be the best place to have a button saying something like 'Email this student the survey form.'
-    Additionally this button should only be visibile/usable by someone with priveleged access to the site.
+/* tests if logged in as student or teacher/admin 
+which allows for hiding the email button from students
 */
+
+function login_checker($role) {
+    if($role = "admin"){
+
+    }
+    else if ($role = "teacher"){
+
+    }
+    else if ($role = "student"){
+
+    }
+    else {
+
+    }
+}
 
 // called to send email to students who have not taken the survey
 function email_survey_send($student_email) {
@@ -18,28 +32,31 @@ mail($to,$subject,$txt);
 
 // checks for valid code
 function code_checker($Code) {
-    while(i=0; i < count($Code) i++) {
+    for(i=0; i < count($Code); i++) {
         if ($Code = $Code[i]){
-            survey_sender();
+            return true;
         }
     }
+    echo "CODE IS INVALID!!!"
+    return false;
 }
 
 // creates student interest survey/sends to student_interest_survey
-
 function survey_sender () {
-
+    if(code_checker($Code) = true){
+        
+    }
 }
 function addSurvey($arrayData){
     $surveyID = $arrayData["surveyID"];
     $interests = $arrayData["interests"];
     $careerGoals = $arrayData["careerGoals"];
-    $studentID = $arrayData["studentID"];
+    $sid = $arrayData["studentID"];
     $pdo = connect_to_db();
-    $stmt = $pdo->prepare("insert into student (firstName,lastName,gradYear,alumni) VALUES (:first,:last,:gradYr,:alum)");
-    $stmt->execute([':first' => $first_name, ":last"=> $last_name, ":gradYr"=>$gradYear,":alum"=>$alumni]);
+    $stmt = $pdo->prepare("insert into student_survey (surveyID,interests,careerGoals,studentID) VALUES (:first,:last,:gradYr,:alum)");
+    $stmt->execute([':surv' => $surveyID, ":inter"=> $interests, ":caree"=>$careerGoals,":stu"=>$studentID]);
     $sid = $pdo->lastInsertId();
-    header("location:students.php?page=student&sid=".$sid."&message=Student Added");
+    header("location:survey.php?page=survey&sid=".$sid."&message=Survey Accepted");
   
 }
 

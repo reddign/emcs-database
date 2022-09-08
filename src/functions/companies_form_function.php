@@ -118,6 +118,7 @@ function addcompany($arrayData){
     $zip = $arrayData["zip"];
     $phone = $arrayData["phone"];
     $pdo = connect_to_db();
+    //TODO: change pdo->prepare to company not student
     $stmt = $pdo->prepare("insert into student (firstName,lastName,gradYear,alumni) VALUES (:first,:last,:gradYr,:alum)");
     $stmt->execute([':first' => $first_name, ":last"=> $last_name, ":gradYr"=>$gradYear,":alum"=>$alumni]);
     $sid = $pdo->lastInsertId();
@@ -125,12 +126,15 @@ function addcompany($arrayData){
   
 }
 function editcompany($arrayData){
-    $last_name = $arrayData["last_name"];
-    $first_name = $arrayData["first_name"];
-    $gradYear = $arrayData["grad_year"];
-    $alumni = $arrayData["alumni"];
+    $company_name = $arrayData["company_name"];
+    $address = $arrayData["address"];
+    $city = $arrayData["city"];
+    $state = $arrayData["state"];
+    $zip = $arrayData["zip"];
+    $phone = $arrayData["phone"];
     $sid = $arrayData["sid"];
     $pdo = connect_to_db();
+    //TODO: change pdo->prepare to company not student
     $stmt = $pdo->prepare("update student  set firstName = :first, lastName = :last, gradYear = :gradYr,alumni=:alum where studentID=:sid");
     $stmt->execute([':first' => $first_name, ":last"=> $last_name, ":gradYr"=>$gradYear,":alum"=>$alumni,":sid"=>$sid]);
     header("location:companies.php?page=student&sid=".$sid."&message=Student Updated");

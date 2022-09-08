@@ -1,6 +1,9 @@
 <?PHP
 $path = '';
 require("includes/header.php");
+require("functions/survey_functions.php");
+
+display_survey_page_navigation("Survey");
 
 ?>
  <!-- Header -->

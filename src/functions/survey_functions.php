@@ -32,7 +32,7 @@ mail($to,$subject,$txt);
 
 // checks for valid code
 function code_checker($Code) {
-    while(i=0; i < count($Code) i++) {
+    for(i=0; i < count($Code); i++) {
         if ($Code = $Code[i]){
             return true;
         }

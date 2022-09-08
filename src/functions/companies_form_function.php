@@ -23,7 +23,7 @@ function display_company_form($student=""){
         State:<input name="state" type="text" value="'.$student["state"].'"><BR/><BR/>
         Zip:<input name="zip" type="text" value="'.$student["zip"].'"><BR/><BR/>
         Phone:<input name="phone" type="text" value="'.$student["phone"].'"><BR/><BR/>
-        <input name="companyid" type="hidden"  value="'.$student["companyID"].'"><BR/>
+        <input name="companyid" type="hidden"  value="'.$student["companyID"].'">
         <input name="page" type="hidden" value="save">  
         <input type="submit" value="'.$buttonString.'">
     </form>';

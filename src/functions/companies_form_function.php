@@ -25,6 +25,7 @@ function display_company_form($student=""){
         Phone:<input name="phone" type="text" value="'.$student["phone"].'"><BR/>
         <input name="companyid" type="hidden"  value="'.$student["companyID"].'">
         <input name="page" type="hidden" value="save">  
+        <input type="submit" value="'.$buttonString.'">
     </form>';
 
 }

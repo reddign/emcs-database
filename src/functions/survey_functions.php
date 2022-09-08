@@ -63,10 +63,10 @@ function display_survey_form($student_survey=""){
     $buttonString = "Submit Survey";
     
     echo '<form method=post action=survey.php>
-        Survey Code:<input name="surveyID" type="text" value="'.$student_survey["surveyID"].'"><BR/>
-        Interests:<input name="interests" type="text" value="'.$student_survey["interests"].'"><BR/>
-        Career Goals:<input name="careerGoals" type="text" value="'.$student_survey["careerGoals"].'"><BR/>
-        Student ID:<input name="studentID" type="text" value="'.$student_survey["studentID"].'"><BR/>
+        Survey Code: &emsp <input name="surveyID" type="text" value="'.$student_survey["surveyID"].'"><BR/>
+        Interests: &emsp <input name="interests" type="text" value="'.$student_survey["interests"].'"><BR/>
+        Career Goals: &emsp <input name="careerGoals" type="text" value="'.$student_survey["careerGoals"].'"><BR/>
+        Student ID: &emsp <input name="studentID" type="text" value="'.$student_survey["studentID"].'"><BR/>
         <input name="page" type="hidden" value="Submit Survey">
         <input type="submit" value="'.$buttonString.'">
     </form>';

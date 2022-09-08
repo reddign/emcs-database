@@ -66,7 +66,7 @@ function display_survey_form($student_survey=""){
         Survey Code:<input name="surveyID" type="text" value="'.$student_survey["surveyID"].'"><BR/>
         Interests:<input name="interests" type="text" value="'.$student_survey["interests"].'"><BR/>
         Career Goals:<input name="careerGoals" type="text" value="'.$student_survey["careerGoals"].'"><BR/>
-        <input name="studentID" type="hidden"  value="'.$student_survey["studentID"].'">
+        Student ID:<input name="studentID" type="hidden"  value="'.$student_survey["studentID"].'">
         <input name="page" type="hidden" value="Submit Survey">
         <input type="submit" value="'.$buttonString.'">
     </form>';

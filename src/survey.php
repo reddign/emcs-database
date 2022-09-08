@@ -1,6 +1,7 @@
 <?PHP
 $path = '';
 require("includes/header.php");
+require("functions/survey_functions.php");
 
 ?>
  <!-- Header -->

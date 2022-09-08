@@ -3,9 +3,20 @@ $path = '';
 require("includes/header.php");
 require("functions/survey_functions.php");
 
+
 display_survey_page_navigation("Survey");
 
-?>
+switch($page){
+    case "code":
+      //TODO: add page switch to get email code
+      break;
+    case "survey":
+      //TODO: add page to take survey
+      break;
+    case "veiw":
+      //TODO: add view page for admins
+      break;
+  }
  <!-- Header -->
   <div class="w3-container" style="margin-top:80px" id="showcase">
     <h1 class="w3-jumbo"><b>Survey</b></h1>

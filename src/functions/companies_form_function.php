@@ -17,12 +17,12 @@ function display_company_form($student=""){
         $buttonString = "Edit Company Info";
     }
     echo '<form method=post action=company.php>
-        Company Name:<input name="company_name" type="text" value="'.$student["companyName"].'"><BR/>
-        Address:<input name="address" type="text" value="'.$student["address"].'"><BR/>
-        City:<input name="city" type="text" value="'.$student["city"].'"><BR/>
-        State:<input name="state" type="text" value="'.$student["state"].'"><BR/>
-        Zip:<input name="zip" type="text" value="'.$student["zip"].'"><BR/>
-        Phone:<input name="phone" type="text" value="'.$student["phone"].'"><BR/>
+        Company Name:<input name="company_name" type="text" value="'.$student["companyName"].'"><BR/><BR/>
+        Address:<input name="address" type="text" value="'.$student["address"].'"><BR/><BR/>
+        City:<input name="city" type="text" value="'.$student["city"].'"><BR/><BR/>
+        State:<input name="state" type="text" value="'.$student["state"].'"><BR/><BR/>
+        Zip:<input name="zip" type="text" value="'.$student["zip"].'"><BR/><BR/>
+        Phone:<input name="phone" type="text" value="'.$student["phone"].'"><BR/><BR/>
         <input name="companyid" type="hidden"  value="'.$student["companyID"].'">
         <input name="page" type="hidden" value="save">  
         <input type="submit" value="'.$buttonString.'">

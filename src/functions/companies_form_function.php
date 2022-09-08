@@ -12,10 +12,10 @@ function display_company_form($student=""){
         $student["zip"] = "";
         $student["phone"] = "";
         $checked = "";
-        $buttonString = "Add Student";
+        $buttonString = "Add Company Info";
     }else{
         $formHTML = "<h2>Edit Student</h2>";
-        $buttonString = "Edit Student";
+        $buttonString = "Edit Company Info";
     }
     echo '<form method=post action=students.php>
         Company Name:<input name="company_name" type="text" value="'.$student["companyName"].'"><BR/>

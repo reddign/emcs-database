@@ -45,14 +45,9 @@ function code_checker($Code) {
     echo "CODE IS INVALID!!!"
     return false;
 }
+
 */
 
-// creates student interest survey/sends to student_interest_survey
-function survey_sender () {
-    if(code_checker($Code) = true){
-
-    }
-}
 function addSurvey($arrayData){
     $surveyID = $arrayData["surveyID"];
     $interests = $arrayData["interests"];

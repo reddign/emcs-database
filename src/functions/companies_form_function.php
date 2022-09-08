@@ -121,7 +121,7 @@ function addcompany($arrayData){
     $stmt = $pdo->prepare("insert into student (firstName,lastName,gradYear,alumni) VALUES (:first,:last,:gradYr,:alum)");
     $stmt->execute([':first' => $first_name, ":last"=> $last_name, ":gradYr"=>$gradYear,":alum"=>$alumni]);
     $sid = $pdo->lastInsertId();
-    header("location:students.php?page=student&sid=".$sid."&message=Student Added");
+    header("location:companies.php?page=student&sid=".$sid."&message=Student Added");
   
 }
 function editcompany($arrayData){
@@ -133,5 +133,5 @@ function editcompany($arrayData){
     $pdo = connect_to_db();
     $stmt = $pdo->prepare("update student  set firstName = :first, lastName = :last, gradYear = :gradYr,alumni=:alum where studentID=:sid");
     $stmt->execute([':first' => $first_name, ":last"=> $last_name, ":gradYr"=>$gradYear,":alum"=>$alumni,":sid"=>$sid]);
-    header("location:students.php?page=student&sid=".$sid."&message=Student Updated");
+    header("location:companies.php?page=student&sid=".$sid."&message=Student Updated");
 }

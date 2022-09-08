@@ -3,7 +3,7 @@ $path = '';
 require("../config.php");
 require("functions/basic_html_functions.php");
 require("functions/database_functions.php");
-require("display_openings_navigation.php");
+require("functions/display_openings_navigation.php");
 /*
 if(isset($_GET["page"])){
 

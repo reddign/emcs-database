@@ -10,10 +10,11 @@ require("../includes/header.php");
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
-  Kelsey is a senior Information Systems major at Etown.
+  Kelsey is a senior Information Systems major at Elizabethtown College.
   She is currently working with team Omega to help users be able to <br>
-  recieve access to job openings and internships.
-  She is also the team lead for team Omega.
+  recieve access to job openings and internships. She is also the <br> 
+  team lead for team Omega.
+  
 
 <?PHP
 require("../includes/footer.php");

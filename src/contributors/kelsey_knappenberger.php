@@ -11,9 +11,9 @@ require("../includes/header.php");
   </div>
 
   Kelsey is a senior Information Systems major at Elizabethtown College.
-  She is currently working with team Omega to help users be able to <br>
-  recieve access to job openings and internships. She is also the <br> 
-  team lead for team Omega.
+  She is currently working with team Omega on the Job Openings page. 
+  This page was made to help users be able to recieve access to job <br>
+  openings and internships. She is also the team lead for team Omega.
   
 
 <?PHP

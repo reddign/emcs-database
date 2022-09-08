@@ -3,14 +3,14 @@
 // TODO: tests if logged in as student or teacher/admin 
 // which allows for hiding the email button from students
 function login_checker($role) {
-    if($role = "admin"){
+    if($role == "admin"){
 
     }
-    else if ($role = "teacher"){
+    else if ($role == "teacher"){
 
     }
-    else if ($role = "student"){
-s
+    else if ($role == "student"){
+
     }
     else {
 

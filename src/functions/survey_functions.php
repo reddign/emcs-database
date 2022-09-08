@@ -10,7 +10,7 @@ function login_checker($role) {
 
     }
     else if ($role = "student"){
-
+s
     }
     else {
 
@@ -21,20 +21,25 @@ function login_checker($role) {
     Student entries lacking in survey information would likely be the best place to have a button 
     saying something like 'Email this student the survey form.'Additionally this button should only 
     be visibile/usable by someone with priveleged access to the site.
+
+    Also, it looks like we're currently only storing students' full names in the DB. Since not all student emails
+    follow the standard format of last name first initial @etown.edu. We will need to have these emails in the database in
+    order to be able to send
 */
+
 
 // called to send email to students who have not taken the survey
 function email_survey_send($student_email,$link) {
 $to = $student_email;
 $subject = "Student Interest Survey";
-$code = 0; # TODO generate access code
+$code = 0; # TODO generate access code, store it with the student DB entry?
 $txt = "Dear Blah, \n\nYou have not completed your student interest survey. Please follow this link ($link)
 and complete the survey. Your access code is $code. \n\nThank you.\n Etown EMCS Department";
 
 mail($to,$subject,$txt);
 }
 
-
+/*
 // checks for valid code
 function code_checker($Code) {
     for(i=0; i < count($Code); i++) {
@@ -46,12 +51,8 @@ function code_checker($Code) {
     return false;
 }
 
-// creates student interest survey/sends to student_interest_survey
-function survey_sender () {
-    if(code_checker($Code) = true){
+*/
 
-    }
-}
 function addSurvey($arrayData){
     $surveyID = $arrayData["surveyID"];
     $interests = $arrayData["interests"];

@@ -1,11 +1,21 @@
 <?PHP
 $path = '';
 require("includes/header.php");
-require("functions/survey_functions.php");
+//require("functions/survey_functions.php");
 
-display_survey_page_navigation("Survey");
 
-?>
+//display_survey_page_navigation("Survey");
+/*
+switch($page){
+    case "add":
+      //TODO: add page to take survey
+      break;
+    case "search":
+      //TODO: add view page for admins
+      break;
+  }
+  */
+  ?>
  <!-- Header -->
   <div class="w3-container" style="margin-top:80px" id="showcase">
     <h1 class="w3-jumbo"><b>Survey</b></h1>
@@ -20,5 +30,5 @@ display_survey_page_navigation("Survey");
 </p>
 
 
-<?PHP
+<?php
 require("includes/footer.php");

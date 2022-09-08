@@ -12,6 +12,6 @@ require("../includes/header.php");
 
   Simon is a Junior Computer Science major.
   He is currently working on excel data transfering.
-  The coding
+  The coding languages he knows 
 <?PHP
 require("../includes/footer.php");

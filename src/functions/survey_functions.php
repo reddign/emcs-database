@@ -1,5 +1,24 @@
 <?PHP
 
+/* tests if logged in as student or teacher/admin 
+which allows for hiding the email button from students
+*/
+
+function login_checker($role) {
+    if($role = "admin"){
+
+    }
+    else if ($role = "teacher"){
+
+    }
+    else if ($role = "student"){
+
+    }
+    else {
+
+    }
+}
+
 // called to send email to students who have not taken the survey
 function email_survey_send($student_email) {
 $to = $student_email;
@@ -15,15 +34,18 @@ mail($to,$subject,$txt);
 function code_checker($Code) {
     while(i=0; i < count($Code) i++) {
         if ($Code = $Code[i]){
-            survey_sender();
+            return true;
         }
     }
+    echo "CODE IS INVALID!!!"
+    return false;
 }
 
 // creates student interest survey/sends to student_interest_survey
-
 function survey_sender () {
-
+    if(code_checker($Code) = true){
+        
+    }
 }
 function addSurvey($arrayData){
     $surveyID = $arrayData["surveyID"];

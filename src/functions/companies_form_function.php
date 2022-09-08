@@ -11,7 +11,7 @@ function display_company_form($student=""){
         $student["state"] = "";
         $student["zip"] = "";
         $student["phone"] = "";
-        $buttonString = "Add Company Info";
+        $buttonString = "Add Company";
     }else{
         $formHTML = "<h2>Edit Student</h2>";
         $buttonString = "Edit Company Info";

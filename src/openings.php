@@ -1,5 +1,6 @@
 <?PHP
 $path = '';
+require("display_openings_navigation.php");
 require("includes/header.php");
 
 ?>
@@ -13,5 +14,7 @@ require("includes/header.php");
 <?PHP
 
 
-  display_openings_navigation("Openings");
+
+display_openings_navigation("Openings");
+
 require("includes/footer.php");

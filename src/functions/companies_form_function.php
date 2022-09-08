@@ -33,7 +33,7 @@ function display_company_page_navigation($currentPage){
     $navHTML  = '<h4><div style="margin-top:5px;margin-bottom:45px;">';
     $navHTML .= '<a href="companies.php?page=search" class="selected">Search</a>';
     $navHTML .= ' | ';
-    $navHTML .= '<a href="companies.php?page=add">Add Company Info</a>';
+    $navHTML .= '<a href="companies.php?page=add">Add Company</a>';
     $navHTML .= ' <div> </h4>';
     
     echo $navHTML;

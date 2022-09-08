@@ -2,7 +2,7 @@
 function display_company_form($student=""){
 
     if($student==""){
-        $formHTML = "<h2>Add Student</h2>";
+        $formHTML = "<h2>Add Company</h2>";
         $student = [];
         $student["studentID"] = "";
         $student["lastName"] = "";

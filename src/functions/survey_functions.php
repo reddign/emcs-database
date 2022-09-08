@@ -1,6 +1,5 @@
 <?PHP
 
-/*
 // TODO: tests if logged in as student or teacher/admin 
 // which allows for hiding the email button from students
 function login_checker($role) {
@@ -11,13 +10,12 @@ function login_checker($role) {
 
     }
     else if ($role = "student"){
-
+s
     }
     else {
 
     }
 }
-*/
 
 /*  TODO: I imagine the students.php page will display student survey information if it exists. 
     Student entries lacking in survey information would likely be the best place to have a button 

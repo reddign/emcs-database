@@ -1,9 +1,7 @@
 <?PHP
 
-/* tests if logged in as student or teacher/admin 
-which allows for hiding the email button from students
-*/
-
+// TODO: tests if logged in as student or teacher/admin 
+// which allows for hiding the email button from students
 function login_checker($role) {
     if($role = "admin"){
 
@@ -44,7 +42,7 @@ function code_checker($Code) {
 // creates student interest survey/sends to student_interest_survey
 function survey_sender () {
     if(code_checker($Code) = true){
-        
+
     }
 }
 function addSurvey($arrayData){

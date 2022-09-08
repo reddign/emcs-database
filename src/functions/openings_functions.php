@@ -4,14 +4,10 @@ function display_openings_form($openings=""){
 }
 function display_openings_navigation($currentPage){
     $navHTML  = '<h4><div style="margin-top:5px;margin-bottom:45px;">';
-    $navHTML .= '<a href="openings.php?page=search" class="selected">Search</a>';
+    $navHTML .= '<a href="openings.php?page=search" class="selected">Search Jobs</a>';
     $navHTML .= ' | ';
-    $navHTML .= '<a href="openings.php?page=add">Add Opening</a>';
-    $navHTML .= ' | ';
-    $navHTML .= '<a href="openings.php?page=add">Edit Opening</a>';
-    $navHTML .= ' | ';
-    $navHTML .= '<a href="openings.php?page=add">Complete Opening</a>';
-    $navHTML .= ' <div> </h4>';
+    $navHTML .= '<a href="openings.php?page=add">Add Jobs</a>';
+
     
     echo $navHTML;
 }

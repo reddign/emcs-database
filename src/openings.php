@@ -3,7 +3,7 @@ $path = '';
 require("../config.php");
 require("functions/basic_html_functions.php");
 require("functions/database_functions.php");
-require("functions/display_openings_navigation.php");
+require("functions/openings_functions.php");
 /*
 if(isset($_GET["page"])){
 
@@ -21,7 +21,7 @@ if(isset($_POST) && isset($_POST["page"]) && $_POST["page"]=="save"){
 //otherwise we display the page
 require("includes/header.php");
 
-display_page_heading("Openings","");
+display_page_heading("Job Openings","");
 display_openings_navigation("Openings");
 
 require("includes/footer.php");

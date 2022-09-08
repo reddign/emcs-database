@@ -7,13 +7,10 @@ require("functions/survey_functions.php");
 display_survey_page_navigation("Survey");
 /*
 switch($page){
-    case "code":
-      //TODO: add page switch to get email code
-      break;
-    case "survey":
+    case "add":
       //TODO: add page to take survey
       break;
-    case "veiw":
+    case "search":
       //TODO: add view page for admins
       break;
   }

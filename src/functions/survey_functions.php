@@ -29,12 +29,12 @@ function addSurvey($arrayData){
     $surveyID = $arrayData["surveyID"];
     $interests = $arrayData["interests"];
     $careerGoals = $arrayData["careerGoals"];
-    $studentID = $arrayData["studentID"];
+    $sid = $arrayData["studentID"];
     $pdo = connect_to_db();
-    $stmt = $pdo->prepare("insert into student (firstName,lastName,gradYear,alumni) VALUES (:first,:last,:gradYr,:alum)");
-    $stmt->execute([':first' => $first_name, ":last"=> $last_name, ":gradYr"=>$gradYear,":alum"=>$alumni]);
+    $stmt = $pdo->prepare("insert into student_survey (surveyID,interests,careerGoals,studentID) VALUES (:first,:last,:gradYr,:alum)");
+    $stmt->execute([':surv' => $surveyID, ":inter"=> $interests, ":caree"=>$careerGoals,":stu"=>$studentID]);
     $sid = $pdo->lastInsertId();
-    header("location:students.php?page=student&sid=".$sid."&message=Student Added");
+    header("location:survey.php?page=survey&sid=".$sid."&message=Survey Accepted");
   
 }
 

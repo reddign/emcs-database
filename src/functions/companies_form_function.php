@@ -36,7 +36,7 @@ function display_company_page_navigation($currentPage){
     
     echo $navHTML;
 }
-function display_company_form(){
+function display_search_form(){
     echo '<h2>Search for a student by Name</h2><form method=get action="students.php">
         Enter Student Name:<input name="search" type="text">
         <input name="page" type="hidden" value="search">

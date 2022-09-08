@@ -31,9 +31,10 @@ function login_checker($role) {
 // called to send email to students who have not taken the survey
 function email_survey_send($student_email,$link) {
 $to = $student_email;
+$name = ""; # TODO Get name from DB via email, or get email from DB via name.
 $subject = "Student Interest Survey";
 $code = 0; # TODO generate access code, store it with the student DB entry?
-$txt = "Dear Blah, \n\nYou have not completed your student interest survey. Please follow this link ($link)
+$txt = "Dear $name, \n\nYou have not completed your student interest survey. Please follow this link ($link)
 and complete the survey. Your access code is $code. \n\nThank you.\n Etown EMCS Department";
 
 mail($to,$subject,$txt);

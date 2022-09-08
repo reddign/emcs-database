@@ -10,7 +10,7 @@ function login_checker($role) {
 
     }
     else if ($role = "student"){
-
+s
     }
     else {
 
@@ -34,7 +34,7 @@ and complete the survey. Your access code is $code. \n\nThank you.\n Etown EMCS 
 mail($to,$subject,$txt);
 }
 
-
+/*
 // checks for valid code
 function code_checker($Code) {
     for(i=0; i < count($Code); i++) {
@@ -46,12 +46,8 @@ function code_checker($Code) {
     return false;
 }
 
-// creates student interest survey/sends to student_interest_survey
-function survey_sender () {
-    if(code_checker($Code) = true){
+*/
 
-    }
-}
 function addSurvey($arrayData){
     $surveyID = $arrayData["surveyID"];
     $interests = $arrayData["interests"];

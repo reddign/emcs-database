@@ -47,7 +47,26 @@ function code_checker($Code) {
 }
 
 */
+function display_survey_form($student_survey=""){
 
+    $formHTML = "<h2>Add Student</h2>";
+    $student_survey = [];
+    $student_survey["surveyID"] = "";
+    $student_survey["interests"] = "";
+    $student_survey["careerGoals"] = "";
+    $student_survey["studentID"] = "";
+    $buttonString = "Submit Survey";
+    
+    echo '<form method=post action=survey.php>
+        First Name:<input name="surveyID" type="text" value="'.$student_survey["surveyID"].'"><BR/>
+        Last Name:<input name="interests" type="text" value="'.$student_survey["interests"].'"><BR/>
+        Grad Year:<input name="careerGoals" type="text" value="'.$student_survey["careerGoals"].'"><BR/>
+        <input name="studentID" type="hidden"  value="'.$student_survey["studentID"].'">
+        <input name="page" type="hidden" value="Submit Survey">
+        <input type="submit" value="'.$buttonString.'">
+    </form>';
+
+}
 function addSurvey($arrayData){
     $surveyID = $arrayData["surveyID"];
     $interests = $arrayData["interests"];

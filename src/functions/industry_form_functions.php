@@ -56,7 +56,7 @@ function display_contact_list($data=null){
 
 function display_contact_info($contact){
     if(!is_array($contact)){
-        echo "Industry Information not found";
+        echo "Contact Information not found";
     }
     echo "<h4><b>Name:</b> ".$contact['firstName']." ".$contact['lastName']."</h4>\n";
     echo "<h4><b>Work phone:</b> ".$contact['workphone']."</h4>\n";

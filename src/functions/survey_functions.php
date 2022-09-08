@@ -62,9 +62,9 @@ function addSurvey($arrayData){
 
 function display_survey_page_navigation($currentPage){
     $navHTML  = '<h4><div style="margin-top:5px;margin-bottom:45px;">';
-    $navHTML .= '<a href="students.php?page=search" class="selected">Email Code</a>';
+    $navHTML .= '<a href="survey.php?page=search" class="selected">Email Code</a>';
     $navHTML .= ' | ';
-    $navHTML .= '<a href="students.php?page=add">Take Survey</a>';
+    $navHTML .= '<a href="survey.php?page=add">Take Survey</a>';
     $navHTML .= ' <div> </h4>';
     
     echo $navHTML;

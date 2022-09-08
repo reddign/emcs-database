@@ -63,9 +63,9 @@ function display_survey_form($student_survey=""){
     $buttonString = "Submit Survey";
     
     echo '<form method=post action=survey.php>
-        First Name:<input name="surveyID" type="text" value="'.$student_survey["surveyID"].'"><BR/>
-        Last Name:<input name="interests" type="text" value="'.$student_survey["interests"].'"><BR/>
-        Grad Year:<input name="careerGoals" type="text" value="'.$student_survey["careerGoals"].'"><BR/>
+        Survey Code:<input name="surveyID" type="text" value="'.$student_survey["surveyID"].'"><BR/>
+        Interests:<input name="interests" type="text" value="'.$student_survey["interests"].'"><BR/>
+        Career Goals:<input name="careerGoals" type="text" value="'.$student_survey["careerGoals"].'"><BR/>
         <input name="studentID" type="hidden"  value="'.$student_survey["studentID"].'">
         <input name="page" type="hidden" value="Submit Survey">
         <input type="submit" value="'.$buttonString.'">

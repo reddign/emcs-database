@@ -11,7 +11,7 @@ require("../includes/header.php");
   </div>
 
   Joe is a senior engineering major at Etown. This is an edit of his page.
-  This is a test.
+  
   
 <?PHP
 require("../includes/footer.php");

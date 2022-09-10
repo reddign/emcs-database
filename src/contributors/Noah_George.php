@@ -11,6 +11,7 @@ require("../includes/header.php");
   </div>
 
   My name is Noah
+  I like to snowboard
 
   yooooooooooooooooo :)
   

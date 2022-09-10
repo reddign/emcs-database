@@ -10,8 +10,13 @@ require("../includes/header.php");
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
-  Joe is a senior engineering major at Etown. This is an edit of his page. This works now!
+<<<<<<< HEAD
+  Joe is a senior engineering major at Etown. This is an edit of his page. 
+  test 1
+=======
+  Joe is a senior engineering major at Etown. This is an edit of his page.
   
+>>>>>>> bcf5a96 (Adding)
   
 <?PHP
 require("../includes/footer.php");

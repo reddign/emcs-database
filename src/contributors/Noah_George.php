@@ -15,6 +15,7 @@ require("../includes/header.php");
   I like coding
   I like movies
   I like being with friends
+  I like computers
 
   yooooooooooooooooo :)
   

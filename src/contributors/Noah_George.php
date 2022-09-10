@@ -13,6 +13,7 @@ require("../includes/header.php");
   My name is Noah
   I like to snowboard
   I like coding
+  I like movies
 
   yooooooooooooooooo :)
   

@@ -181,6 +181,7 @@ function editMeeting($arrayData){
     header("location:meetings.php?page=meeting&mid=".$mid."&message=Meeting Updated");
 }
 
+
 function debug_to_console($data) {
     $output = $data;
     if (is_array($output))

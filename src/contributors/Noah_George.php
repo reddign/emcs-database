@@ -14,6 +14,7 @@ require("../includes/header.php");
   I like to snowboard
   I like coding
   I like movies
+  I like being with friends
 
   yooooooooooooooooo :)
   

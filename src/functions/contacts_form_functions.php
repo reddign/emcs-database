@@ -166,7 +166,7 @@ function get_contact_by_name($word){
         return get_all_contacts_from_db();
     }
     $pdo = connect_to_db();
-    $stmt = $pdo->prepare("SELECT * FROM contact WHERE firstName like :name or lastName like :name");
+    $stmt = $pdo->prepare("SELECT * FROM contact WHERE CONCAT(firstName, ' ', lastName) LIKE :name");
     $stmt->execute([':name' => "%".$word."%"]); 
     $data = [];
     while($student =  $stmt->fetch(PDO::FETCH_ASSOC)){

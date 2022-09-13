@@ -1,16 +1,9 @@
 <?PHP
 $path = '';
+require("functions/basic_html_functions.php");
 require("includes/header.php");
+display_small_page_heading("EMCS Career","Database");
 
-?>
- <!-- Header -->
-  <div class="w3-container" style="margin-top:80px" id="showcase">
-    <h1 class="w3-jumbo"><b>EMCS Career Link</b></h1>
-    <h1 class="w3-xxxlarge w3-text-red"><b>Database.</b></h1>
-    <hr style="width:50px;border:5px solid red" class="w3-round">
-  </div>
-
-  <?php
   echo "Welcome to the main page of the EMCS database.";
   ?>
   

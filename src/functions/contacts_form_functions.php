@@ -33,12 +33,18 @@ function display_contact_form($contact=NULL){
         Home Phone:<input name="homephone" type="text" value="' .$contact["homephone"].'"><BR/>
         Former Student ID:<input name="formerStudentID" type="text" value="' .$contact["formerStudentID"].'"><BR/>';
 
-    echo '<label for="companies">Associated Companies:</label>
-        <select multiple name="companies" id="companies">';
+    echo '<label for="companies">Associated Company:</label>
+        <select name="companies" id="companies">';
+
+    echo '<option value="NONE"></option>';
 
     if(is_array($companies)) {
         foreach($companies as $company) {
-            $selected = (in_array($company['companyID'],$assoc_companies)) ? " selected" : "";
+            $selected = "";
+            foreach($assoc_companies as $assoc_c) {
+                if($assoc_c['companyID'] == $company['companyID'])
+                    $selected = " selected";
+            }
             echo '<option value='.$company['companyID'].$selected.'>'.$company['companyName'].'</option>';
         }
         unset($company);
@@ -94,8 +100,10 @@ function addOrEditCompany($arrayData) {
     $pdo = connect_to_db();
     $stmt = $pdo->prepare("DELETE FROM company_to_contact WHERE contactID=:id");
     $stmt->execute([':id' => $arrayData['contactID']]);
-    $stmt2 = $pdo->prepare("INSERT INTO company_to_contact (contactID,companyID) VALUES (:id,:cid)");
-    $stmt2->execute([':id' => $arrayData['contactID'], 'cid' => $arrayData['companies']]);
+    if($arrayData['companies'] != "NONE") {
+        $stmt2 = $pdo->prepare("INSERT INTO company_to_contact (contactID,companyID) VALUES (:id,:cid)");
+        $stmt2->execute([':id' => $arrayData['contactID'], 'cid' => $arrayData['companies']]);
+    }
 }
 
 ////////// SEARCHING FOR CONTACTS //////////
@@ -129,7 +137,7 @@ function display_contact_info($contact){
         echo "<h4><b>Cell phone:</b> ".$contact['cellphone']."</h4>\n";
         echo "<h4><b>Home phone:</b> ".$contact['homephone']."</h4>\n";
         echo "<h4><b>Alumni:</b> ".(($contact['formerStudentID'] == NULL) ? "NO" : "YES")."</h4>\n";
-        echo "<h4><b>Companies:</b> "; 
+        echo "<h4><b>Company:</b> "; 
         $first = true;
         if(is_array($companies)) {
             foreach($companies as $company) {

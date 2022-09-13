@@ -22,7 +22,7 @@ if(isset($_POST) && isset($_POST["page"]) && $_POST["page"]=="save"){
 require("includes/header.php");
 
 
-  display_page_heading("Students","");
+  display_small_page_heading("Students","");
 
   display_student_page_navigation("Students");
  

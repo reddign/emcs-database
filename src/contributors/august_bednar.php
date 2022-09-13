@@ -9,7 +9,7 @@ require("../includes/header.php");
     <h1 class="w3-xxxlarge w3-text-red"><b>Jane Doe</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
-  
+  alda
   August is a junior data science major at Etown.
   
 <?PHP

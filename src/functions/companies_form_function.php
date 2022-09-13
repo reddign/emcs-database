@@ -75,6 +75,7 @@ function display_company_info($student){
 
 function get_company($sid){
     $pdo = connect_to_db();
+    //TODO: update values for companies table
     $stmt = $pdo->prepare("SELECT * FROM student WHERE studentID=:sid");
     $stmt->execute([':sid' => $sid]); 
     $student = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -86,6 +87,7 @@ function get_company_by_name($word){
         return get_all_company_from_db();
     }
     $pdo = connect_to_db();
+    //TODO: update values for companies table
     $stmt = $pdo->prepare("SELECT * FROM student WHERE firstName like :name or lastName like :name");
     $stmt->execute([':name' => $word."%"]);
     $data = [];
@@ -97,6 +99,7 @@ function get_company_by_name($word){
 }    
 function get_all_company_from_db(){
     $pdo = connect_to_db();
+    //TODO: update values for companies table
     $data = $pdo->query("SELECT * FROM student order by lastName,firstName")->fetchAll();
     return $data;
 }

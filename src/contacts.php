@@ -18,7 +18,6 @@ if(isset($_POST) && isset($_POST["page"]) && $_POST["page"]=="save"){
 #<!-- Header -->
 display_page_heading("Industry Contacts","");
 display_contacts_page_navigation($page);
-
   
   switch($page){
     case "search":

@@ -10,7 +10,12 @@ require("../includes/header.php");
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
-  My name is Noah George and I am a seinor computer scienece major.
+  My name is Noah
+  I like to snowboard
+  I like coding
+  I like movies
+  I like being with friends
+  I like computers
 
   yooooooooooooooooo :)
   

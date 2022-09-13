@@ -10,7 +10,7 @@ require("../includes/header.php");
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
-  Blake is a senior computer science major at Etown.
+  Blake is a senior computer science major at Etown. He used to wear a hat last year and Prof Reddig had a hard time recognizing him at first.
   
 
 <?PHP

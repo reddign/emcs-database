@@ -33,7 +33,7 @@ display_small_page_heading("About","");
   <a href="contributors/seamus_corr.php">Seamus Corr</a>,
   <a href="contributors/kelsey_knappenberger.php">Kelsey Knappenberger</a><BR/><BR/>
 Not Pictured:  <BR/>
-Gabriel Kimmel<BR/>
+<a href="contributors/gabe_kimmel.php">Gabriel Kimmel</a><BR/>
 <BR/>
 
 <a href="contributors/prof_reddig.php">Professor Nancy Reddig</a><BR/>

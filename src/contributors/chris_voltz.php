@@ -11,7 +11,6 @@ require("../includes/header.php");
   </div>
 
   Chris is a senior information systems major at Etown. 
-  
 
 <?PHP
 require("../includes/footer.php");

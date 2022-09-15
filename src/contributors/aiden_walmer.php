@@ -10,8 +10,10 @@ require("../includes/header.php");
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
-  Aiden is a Junior Computer Science major at Etown.
+  Aiden is a junior computer science major at Etown. 
   He is currently working with team Beta to provide access to industry contacts data.
+
+  He is also my roommate and we are working on this together. - Adam changed this. 
 
 <?PHP
 require("../includes/footer.php");

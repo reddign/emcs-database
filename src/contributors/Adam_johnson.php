@@ -10,7 +10,15 @@ require("../includes/header.php");
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
-   I am a junior in computer engineering. 
+   I am a Junior in Computer Engineering at Etown. 
+   Adam is my roomate - Aiden's Edit
+
+   commit 1
+   commit 2
+   commit 3
+   commit 4
+   commit 5
+   commit 6
 
 <?PHP
 require("../includes/footer.php");

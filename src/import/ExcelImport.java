@@ -66,6 +66,9 @@ public class ExcelImport {
         catch (NumberFormatException e) { return -1; }
     }
 
+
+    //microsoft lists stores bool values as strings "Yes" and "No"
+    //converts that to a bool
     private static boolean yntoBool(String s) {
         return s.equals("Yes");
     }

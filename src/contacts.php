@@ -5,13 +5,19 @@ require("../config.php");
 require("functions/database_functions.php");
 require("functions/basic_html_functions.php");
 require("functions/contacts_form_functions.php");
-require("functions/industry_form_functions.php");
+
+
+//Sets the page value for display
 $page = isset($_GET["page"])?$_GET["page"]:"search";
+//If a form post lead the user here, we process the posted data in a function
+if(isset($_POST) && isset($_POST["page"]) && $_POST["page"]=="save"){
+  process_contact_form_data($_POST);
+  exit;
+}
 
-  #<!-- Header -->
-  display_page_heading("Industry Contacts","");
-  display_contacts_page_navigation($page);
-
+#<!-- Header -->
+display_page_heading("Industry Contacts","");
+display_contacts_page_navigation($page);
   
   switch($page){
     case "search":
@@ -21,12 +27,12 @@ $page = isset($_GET["page"])?$_GET["page"]:"search";
       display_contact_list($contacts);
       break;
     case "add":
-      #display_contact_form();
+      display_contact_form();
       break;
     case "edit":
-      #$id = isset($_GET["id"])?$_GET["id"]:"";
-      #$contact = get_contact($id);
-      #display_contact_form($contact);
+      $id = isset($_GET["id"])?$_GET["id"]:"";
+      $contact = get_contact($id);
+      display_contact_form($contact);
       break;
     case "contact":
       $id = isset($_GET["id"])?$_GET["id"]:"";

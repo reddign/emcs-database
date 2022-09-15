@@ -10,7 +10,8 @@ require("../includes/header.php");
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
-  Chris is a senior information systems major at Etown.
+  Chris is a senior information systems major at Etown. 
+  I
 
 <?PHP
 require("../includes/footer.php");

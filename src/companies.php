@@ -26,7 +26,8 @@ require("includes/header.php");
 
   display_company_page_navigation("Companies");
  
- 
+
+  //TODO: update cases for companies
   switch($page){
     case "search":
       $string = isset($_GET["search"])?$_GET["search"]:"";

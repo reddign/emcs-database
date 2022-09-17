@@ -1,4 +1,5 @@
 <?PHP
+//the function makes it so you can edit and add to the meeting tab
 function display_meeting_form($meeting=""){
 
     if($meeting==""){

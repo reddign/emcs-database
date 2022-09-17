@@ -124,7 +124,7 @@ function get_meetings_by_loc($mLoc){
     
     return $data;
 }
-
+// function that allows multiple search parameters
 function combined_search($mName, $mDate, $mLoc){
     $pdo = connect_to_db();
     if($mDate==""){

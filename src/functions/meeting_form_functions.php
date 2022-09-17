@@ -135,14 +135,14 @@ function combined_search($mName, $mDate, $mLoc){
     $data = $stmt->fetchall();
     return $data;
 }
-
+//function to tell the system to get the meeting by location
 function get_meetings_by_search($mName, $mDate, $mLoc){
     if($mName=="" && $mDate=="" && $mLoc==""){
         return get_all_meetings_from_db();
     }
     return combined_search($mName, $mDate, $mLoc);
 }
-
+//function to get all meetings
 function get_all_meetings_from_db(){
     $pdo = connect_to_db();
     $data = $pdo->query("SELECT * FROM meeting order by date;")->fetchAll();

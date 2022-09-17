@@ -99,7 +99,7 @@ function get_meetings_by_name($word){
     
     return $data;
 }
-
+//function to tell the system to get the meeting by date
 function get_meetings_by_date($date){
     if($date==""){
         return get_all_meetings_from_db();

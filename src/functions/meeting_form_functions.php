@@ -30,7 +30,7 @@ function display_meeting_form($meeting=""){
     </form>';
 
 }
-
+//displaying the meeting page with functionalities 
 function display_meeting_page_navigation($currentPage){
     $navHTML  = '<h4><div style="margin-top:5px;margin-bottom:45px;">';
     $navHTML .= '<a href="meetings.php?page=search" class="selected">Search</a>';

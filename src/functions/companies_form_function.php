@@ -1,6 +1,7 @@
 <?PHP
 function display_company_form($student=""){
 
+    //text entry
     if($student==""){
         $formHTML = "<h2>Add Company</h2>";
         $student = [];
@@ -38,6 +39,8 @@ function display_company_page_navigation($currentPage){
     
     echo $navHTML;
 }
+
+//search
 function display_search_form(){
     echo '<h2>Search for a company by Name</h2><form method=get action="companies.php">
         Enter Company Name:<input name="search" type="text">

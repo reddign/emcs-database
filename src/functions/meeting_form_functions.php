@@ -40,6 +40,7 @@ function display_meeting_page_navigation($currentPage){
     
     echo $navHTML;
 }
+//displaying the ability to search meeting with functionalities 
 function display_search_meeting_form(){
     echo '<h2>Search for a meeting:</h2><form method=get action="meetings.php">
         Search By Name: <input style="margin-bottom:14px;" name="search" type="text"></br>

@@ -15,6 +15,7 @@ function display_meeting_form($meeting=""){
     }else{
         $formHTML = "<h2>Edit Meeting</h2>";
         $submitText = "Save Meeting";
+    //displaying the style of the page    
     }
     echo '<form method=post action=meetings.php>
         Meeting Name: <input style="margin-bottom:14px;" name="meetingName" type="text" value="'.$meeting["meetingName"].'"><BR/>

@@ -87,6 +87,7 @@ function get_meeting($mid){
     $data = $stmt->fetch();
     return $data;
 } 
+//function to tell the system to get the meeting by name
 function get_meetings_by_name($word){
     if($word==""){
         return get_all_meetings_from_db();

@@ -50,7 +50,7 @@ function display_search_meeting_form(){
         <input type="submit" value="Search">
     </form><br/><br/>';
 }
-
+//function to specify if a meeting is in the system or not 
 function display_meeting_list($data=null){
     if($data==null){
         echo "<h3><b>No Meetings Found...</b></h2>";

@@ -112,7 +112,7 @@ function get_meetings_by_date($date){
     
     return $data;
 }
-
+//function to tell the system to get the meeting by location
 function get_meetings_by_loc($mLoc){
     if($mLoc==""){
         return get_all_meetings_from_db();

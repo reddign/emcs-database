@@ -79,7 +79,7 @@ function display_meeting_info($meeting){
     echo "<h4><b>Notes:</b> ".$meeting['notes']."</h4>\n";
 
 }
-
+//function to tell the system where to pull the meeting info from 
 function get_meeting($mid){
     $pdo = connect_to_db();
     $stmt = $pdo->prepare("SELECT * FROM meeting WHERE meetingID=:mid");

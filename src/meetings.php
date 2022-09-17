@@ -54,7 +54,7 @@ if(isset($_POST) && isset($_POST["page"]) && $_POST["page"]=="save"){
       display_meeting_info($meeting);
       break;
   }
-  
+  //adding footer
   require("includes/footer.php");
   ?>
 

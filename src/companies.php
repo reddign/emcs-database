@@ -21,7 +21,7 @@ if(isset($_POST) && isset($_POST["page"]) && $_POST["page"]=="save"){
 //otherwise we display the page
 require("includes/header.php");
 
-
+  //page headings
   display_page_heading("Companies","");
 
   display_company_page_navigation("Companies");

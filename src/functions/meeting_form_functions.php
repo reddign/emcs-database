@@ -199,4 +199,4 @@ function debug_to_console($data) {
 //POSSIBLE ADDS
 //clean up the look of the page
 //maybe add a calender and reminders for upcoming meetings?
-//This is the last commit for team Alpha, good luck on the final production!
+//This is the final commit from team aplha, good luck on the fina product to whatever team takes this over!

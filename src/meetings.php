@@ -26,6 +26,7 @@ if(isset($_POST) && isset($_POST["page"]) && $_POST["page"]=="save"){
     
   <?php
   //making the searchbar be able to search by date, location and meetings
+  //also adding the add, edit, and meetings function
   //$page = isset($_GET["page"])?$_GET["page"]:"search";
   switch($page){
     case "search":

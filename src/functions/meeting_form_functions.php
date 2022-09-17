@@ -160,6 +160,7 @@ function process_meeting_form_data($arrayData){
     }
     
 }
+//function to have the ability to add a meeting 
 function addMeeting($arrayData){
     $name = $arrayData["meetingName"];
     $date = $arrayData["date"];

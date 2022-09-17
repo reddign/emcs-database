@@ -148,6 +148,7 @@ function get_all_meetings_from_db(){
     $data = $pdo->query("SELECT * FROM meeting order by date;")->fetchAll();
     return $data;
 }
+//debug function
 function process_meeting_form_data($arrayData){
     print_r($arrayData);
     debug_to_console($arrayData["mid"]);

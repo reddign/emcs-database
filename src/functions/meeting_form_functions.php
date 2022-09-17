@@ -196,3 +196,6 @@ function debug_to_console($data) {
 
     echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
 }
+//POSSIBLE ADDS
+//clean up the look of the page
+//maybe add a calender and reminders for upcoming meetings?

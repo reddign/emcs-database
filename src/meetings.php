@@ -8,6 +8,8 @@ require("functions/database_functions.php");
 #require("functions/student_form_functions.php");
 require("functions/meeting_form_functions.php");
 
+
+//added the ability to save info on meetings page
 $page = isset($_GET["page"])?$_GET["page"]:"search";
 if(isset($_POST) && isset($_POST["page"]) && $_POST["page"]=="save"){
   #debug_to_console($_POST);

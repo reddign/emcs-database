@@ -1,4 +1,5 @@
 <?PHP
+//added the meetings page and functions that go with it
 $path = '';
 require("includes/header.php");
 require("../config.php");

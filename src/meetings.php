@@ -23,7 +23,9 @@ if(isset($_POST) && isset($_POST["page"]) && $_POST["page"]=="save"){
     display_page_heading("Meetings","");
     display_meeting_page_navigation("Meetings");
   ?>
+    
   <?php
+  //making the searchbar be able to search by date, location and meetings
   //$page = isset($_GET["page"])?$_GET["page"]:"search";
   switch($page){
     case "search":

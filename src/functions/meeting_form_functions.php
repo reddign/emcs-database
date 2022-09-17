@@ -66,7 +66,7 @@ function display_meeting_list($data=null){
         }
     }
 }
-
+//displaying meeting info
 function display_meeting_info($meeting){
     if(!is_array($meeting)){
         echo "Meeting Information not found";

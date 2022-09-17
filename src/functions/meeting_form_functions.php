@@ -174,6 +174,7 @@ function addMeeting($arrayData){
     header("location:meetings.php?page=meeting&mid=".$mid."&message=Meeting Added");
   
 }
+//function to have the ability to edit a meeting
 function editMeeting($arrayData){
     $name = $arrayData["meetingName"];
     $date = $arrayData["date"];

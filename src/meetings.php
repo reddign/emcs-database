@@ -23,14 +23,25 @@ if(isset($_POST) && isset($_POST["page"]) && $_POST["page"]=="save"){
   <?php
   //$page = isset($_GET["page"])?$_GET["page"]:"search";
   switch($page){
+    // Adding the search, add, edit, and meeting functionality
     case "search":
       $search = isset($_GET["search"])?$_GET["search"]:"";
+
+      //Search by date
       $searchDate = isset($_GET["searchDate"])?$_GET["searchDate"]:"";
+
+      //Search by location
       $searchLoc = isset($_GET["searchLoc"])?$_GET["searchLoc"]:"";
+
       #$meetings = get_meetings_by_name($search);
+
+      //Throwing search results into $meetings
       $meetings = get_meetings_by_search($search, $searchDate, $searchLoc);
+
+      //Display meeting data on page
       display_search_meeting_form();
       display_meeting_list($meetings);
+      
       break;
     case "add":
       display_meeting_form();

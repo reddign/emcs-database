@@ -12,5 +12,6 @@ require("../includes/header.php");
 
   Freddie is a senior computer engineering major at Etown.
   He is working with Team Beta to provide access to industry contacts data.
+  hi
 <?PHP
 require("../includes/footer.php");

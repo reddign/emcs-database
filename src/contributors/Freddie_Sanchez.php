@@ -16,5 +16,6 @@ require("../includes/header.php");
   my
   name
   is
+  freddie
 <?PHP
 require("../includes/footer.php");

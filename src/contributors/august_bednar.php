@@ -10,7 +10,7 @@ require("../includes/header.php");
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
   
-  August is a junior data science major at Etown.
+  August is a junior data science major at Etown. He is also on the Elizabethtown College Baseball team.
   
 <?PHP
 require("../includes/footer.php");
